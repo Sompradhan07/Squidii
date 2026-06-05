@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { randomUUID } from 'crypto'
 
-/* ── Allowed answer values per question — 11-question validation survey ───── */
+/* ── Allowed answer values per question — 10-question validation survey ───── */
 const ALLOWED: Record<string, readonly string[]> = {
   q1:  ['bengaluru','mumbai','delhi','hyderabad','pune','other'],
   q2:  ['professional','student','other'],
@@ -13,7 +13,6 @@ const ALLOWED: Record<string, readonly string[]> = {
   q8:  ['meal-prep','diet-app','meal-service','havent'],
   q9:  ['u100','100-150','150-200','200plus'],
   q10: ['yes','maybe','no'],
-  // q11 (early-access contact) is free text — validated via sanitizeString, not an allow-list
 }
 
 function sanitizeString(v: unknown, maxLen = 512): string {
@@ -54,9 +53,6 @@ export async function POST(request: NextRequest) {
     ['q1','q2','q3','q4','q5','q6','q7','q8','q9','q10'].map((k) => [k, validateAnswer(k, body[k])])
   )
 
-  /* Q11 — early-access contact (WhatsApp / email) is free text, optional */
-  const q11 = sanitizeString(body.q11, 256)
-
   /* Require at minimum: city, primary goal, and interest level */
   if (!answers.q1 || !answers.q5 || !answers.q10) {
     return NextResponse.json({ success: false, error: 'Incomplete survey' }, { status: 400 })
@@ -66,7 +62,6 @@ export async function POST(request: NextRequest) {
     submissionId: randomUUID(),
     timestamp:    new Date().toISOString(),
     ...answers,
-    q11,
     deviceType: sanitizeString(body.deviceType, 32),
     browser:    sanitizeString(body.browser,    64),
     referrer:   sanitizeString(body.referrer,   256),

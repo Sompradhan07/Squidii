@@ -312,33 +312,6 @@ html.lenis, html.lenis body { height: auto; }
               0 1px 4px rgba(44,40,34,0.04);
 }
 
-/* ─── Survey open-text input (Q11 — early access) ────────────────────────── */
-.survey-input {
-  width: 100%;
-  padding: 1rem 1.25rem;
-  min-height: 60px;
-  border-radius: 16px;
-  border: 1px solid rgba(44, 40, 34, 0.10);
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  color: var(--nb-heading);
-  font-family: var(--font-inter), sans-serif;
-  font-size: 16px; /* ≥16px avoids iOS focus-zoom */
-  line-height: 1.4;
-  text-align: center;
-  box-shadow: 0 1px 3px rgba(44,40,34,0.04), 0 4px 18px rgba(44,40,34,0.04);
-  transition: border-color 0.24s ease, box-shadow 0.24s ease, background 0.24s ease;
-  -webkit-tap-highlight-color: transparent;
-}
-.survey-input::placeholder { color: var(--nb-subtle); }
-.survey-input:focus {
-  outline: none;
-  border-color: rgba(90,108,72,0.42);
-  background: rgba(255,255,255,0.96);
-  box-shadow: 0 0 0 3.5px rgba(90,108,72,0.09), 0 4px 20px rgba(90,108,72,0.10);
-}
-
 /* Icon container inside each survey option card */
 .survey-icon-box {
   width: 36px;

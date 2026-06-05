@@ -46,13 +46,11 @@ type Question = {
   sub: string; hint: string; ctx: string
   multi: boolean; opts: Opt[]
   grid?: boolean
-  open?: boolean
-  placeholder?: string
 }
 type Answers = Record<number, string | string[]>
 type SubmitState = 'idle' | 'submitting' | 'success' | 'error'
 
-/* ─── Questions — 11-question Bengaluru validation survey (content doc) ──── */
+/* ─── Questions — 10-question Bengaluru validation survey ─────────────────── */
 const questions: Question[] = [
   {
     id: 1, label: 'Your City',
@@ -183,15 +181,6 @@ const questions: Question[] = [
       { v: 'maybe', l: 'Maybe', icon: ic.question },
       { v: 'no',    l: 'No',    icon: ic.frown    },
     ],
-  },
-  {
-    id: 11, label: 'Early Access',
-    qPre: 'Want', qEm: 'early access?',
-    sub: 'Drop your WhatsApp number or email and we’ll reach out when Nura is ready.',
-    hint: 'Optional — leave it blank if you’d rather not.',
-    ctx: 'Stay in the loop', multi: false, open: true,
-    placeholder: 'WhatsApp number or email (optional)',
-    opts: [],
   },
 ]
 
@@ -326,8 +315,8 @@ function SuccessScreen() {
           <em className="text-nb-olive" style={{ fontStyle: 'italic' }}>shape Nura.</em>
         </h2>
         <p className="text-nb-body leading-[1.78] max-w-[40ch] mx-auto" style={{ fontSize: '0.9rem' }}>
-          We&rsquo;ll reach out when Nura is ready — thank you for helping us build
-          something that actually fits people&rsquo;s lives.
+          Thank you for helping us build something that actually fits people&rsquo;s lives.
+          Join our WhatsApp community below to follow along and be first in line.
         </p>
       </div>
 
@@ -429,10 +418,6 @@ export default function Survey() {
     })
   }, [q])
 
-  const setOpen = useCallback((value: string) => {
-    setAnswers((prev) => ({ ...prev, [q.id]: value }))
-  }, [q])
-
   const handleSubmit = useCallback(async (currentAnswers: Answers) => {
     setSubmitState('submitting')
 
@@ -453,7 +438,6 @@ export default function Survey() {
       q8:  formatAnswer(currentAnswers[8]),
       q9:  formatAnswer(currentAnswers[9]),
       q10: formatAnswer(currentAnswers[10]),
-      q11: formatAnswer(currentAnswers[11]),
       deviceType,
       browser,
       referrer,
@@ -493,11 +477,9 @@ export default function Survey() {
     }
   }, [idx, transition])
 
-  const answered = q.open
-    ? true
-    : q.multi
-      ? ((answers[q.id] as string[] | undefined) ?? []).length > 0
-      : !!answers[q.id]
+  const answered = q.multi
+    ? ((answers[q.id] as string[] | undefined) ?? []).length > 0
+    : !!answers[q.id]
 
   /* Spring-animate CTA on first answer activation */
   useEffect(() => {
@@ -533,7 +515,7 @@ export default function Survey() {
       id="survey"
       ref={sectionRef}
       className="min-h-svh flex flex-col relative overflow-hidden"
-      aria-label="Shape Nura — 11-question survey"
+      aria-label="Shape Nura — 10-question survey"
       style={{ background: 'linear-gradient(180deg, #f0ebe1 0%, #f5f0e8 40%, #faf7f2 100%)' }}
     >
       {/* Grain texture */}
@@ -627,42 +609,26 @@ export default function Survey() {
                 </p>
               </div>
 
-              {/* Options or open text input */}
-              {q.open ? (
-                <div style={{ marginBottom: 'clamp(1.75rem,3.5vw,2.5rem)' }}>
-                  <input
-                    type="text"
-                    inputMode="text"
-                    autoComplete="off"
-                    value={(answers[q.id] as string | undefined) ?? ''}
-                    onChange={(e) => setOpen(e.target.value)}
-                    onKeyDown={(e) => { if (e.key === 'Enter' && !submitting) next() }}
-                    placeholder={q.placeholder}
-                    aria-label={`${q.qPre} ${q.qEm}`}
-                    className="survey-input"
-                  />
-                </div>
-              ) : (
-                <div
-                  className={q.grid ? 'survey-opts-grid' : 'survey-opts-stack'}
-                  style={{ marginBottom: 'clamp(1.75rem,3.5vw,2.5rem)' }}
-                >
-                  {q.opts.map((opt) => {
-                    const sel = q.multi
-                      ? ((answers[q.id] as string[] | undefined) ?? []).includes(opt.v)
-                      : answers[q.id] === opt.v
-                    return (
-                      <Option
-                        key={opt.v}
-                        opt={opt}
-                        selected={sel}
-                        multi={q.multi}
-                        onSelect={() => select(opt.v)}
-                      />
-                    )
-                  })}
-                </div>
-              )}
+              {/* Option cards */}
+              <div
+                className={q.grid ? 'survey-opts-grid' : 'survey-opts-stack'}
+                style={{ marginBottom: 'clamp(1.75rem,3.5vw,2.5rem)' }}
+              >
+                {q.opts.map((opt) => {
+                  const sel = q.multi
+                    ? ((answers[q.id] as string[] | undefined) ?? []).includes(opt.v)
+                    : answers[q.id] === opt.v
+                  return (
+                    <Option
+                      key={opt.v}
+                      opt={opt}
+                      selected={sel}
+                      multi={q.multi}
+                      onSelect={() => select(opt.v)}
+                    />
+                  )
+                })}
+              </div>
 
               {/* Error banner */}
               {submitState === 'error' && (
@@ -733,7 +699,7 @@ export default function Survey() {
                       {submitState === 'error'
                         ? 'Retry'
                         : isLast
-                          ? (q.open && !(answers[q.id]) ? 'Skip & Finish' : 'Submit & Finish')
+                          ? 'Submit & Finish'
                           : 'Continue'}
                       <svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden>
                         <path d="M6 4l4 4-4 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />

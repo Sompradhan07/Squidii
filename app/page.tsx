@@ -41,7 +41,7 @@ export default function Page() {
         {/* 07 — Shape Nura (Survey Intro CTA) */}
         <SurveyIntro />
 
-        {/* 08 — 11-Question Survey */}
+        {/* 08 — 10-Question Survey */}
         <Survey />
       </main>
 
