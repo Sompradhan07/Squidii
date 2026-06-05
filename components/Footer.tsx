@@ -4,9 +4,9 @@ import { useEffect, useRef } from 'react'
 import { gsap } from '@/lib/gsap'
 
 const LINKS: Record<string, string[]> = {
-  Product: ['Blueprint', 'Features', 'Science', 'Pricing'],
-  Company: ['About Nura', 'Research', 'Blog', 'Careers'],
-  Support: ['How It Works', 'FAQ', 'Privacy', 'Terms'],
+  Explore: ['The problem', 'What we do', 'Who it’s for', 'Shape Nura'],
+  Company: ['About Nura', 'Blog', 'Careers'],
+  Legal:   ['Privacy', 'Terms'],
 }
 
 export default function Footer() {
@@ -48,19 +48,19 @@ export default function Footer() {
               className="font-display font-medium text-nb-sage tracking-[0.04em]"
               style={{ fontSize: '1.35rem' }}
             >
-              Nura
+              nura.
             </div>
             <p
               className="leading-[1.74]"
               style={{ color: 'rgba(255,255,255,0.46)', fontSize: '0.86rem', maxWidth: '30ch' }}
             >
-              The personalized nutrition operating system for your body.
-              Not a diet. A living system built around you.
+              Food that fits your goals. Nura designs meals around your body and
+              your goals — so eating right is finally simple to keep up.
             </p>
             <div className="flex items-center gap-3">
               <div className="line-cream" />
-              <span className="label-sm" style={{ color: 'rgba(255,255,255,0.28)', fontSize: '0.58rem' }}>
-                Precision Nutrition Intelligence
+              <span className="label-sm" style={{ color: 'rgba(255,255,255,0.45)', fontSize: '0.58rem' }}>
+                Food That Fits Your Goals
               </span>
             </div>
           </div>
@@ -71,15 +71,15 @@ export default function Footer() {
               className="font-display font-medium text-nb-cream leading-[1.3]"
               style={{ fontSize: 'clamp(1.1rem, 2.4vw, 1.45rem)' }}
             >
-              Ready to discover<br />
-              <span className="text-nb-sage italic">your blueprint?</span>
+              Ready to help<br />
+              <span className="text-nb-sage italic">build Nura?</span>
             </p>
             <div>
               <button
                 className="btn btn-cream"
                 onClick={() => document.getElementById('survey')?.scrollIntoView({ behavior: 'smooth' })}
               >
-                Begin Assessment
+                Help Build It
                 <svg width="11" height="11" viewBox="0 0 16 16" fill="none" aria-hidden>
                   <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
@@ -100,30 +100,29 @@ export default function Footer() {
         >
           {/* Brand blurb */}
           <div className="flex flex-col gap-3">
-            <p className="label-sm" style={{ color: 'rgba(255,255,255,0.42)', fontSize: '0.62rem' }}>Nura</p>
-            <p style={{ color: 'rgba(255,255,255,0.28)', fontSize: '0.80rem', lineHeight: 1.72 }}>
-              Built by scientists and engineers who believe food should feel like freedom.
+            <p className="label-sm" style={{ color: 'rgba(255,255,255,0.55)', fontSize: '0.62rem' }}>nura.</p>
+            <p style={{ color: 'rgba(255,255,255,0.52)', fontSize: '0.80rem', lineHeight: 1.72 }}>
+              Built in Bengaluru by people who think eating right shouldn’t be this hard.
             </p>
           </div>
 
           {Object.entries(LINKS).map(([cat, items]) => (
             <div key={cat} className="flex flex-col gap-3">
-              <p className="label-sm" style={{ color: 'rgba(255,255,255,0.38)', fontSize: '0.62rem' }}>{cat}</p>
+              <p className="label-sm" style={{ color: 'rgba(255,255,255,0.55)', fontSize: '0.62rem' }}>{cat}</p>
               <ul className="flex flex-col gap-[0.52rem] list-none">
                 {items.map((item) => {
                   const href =
-                    item === 'Blueprint'   ? '#survey'
-                    : item === 'Features'  ? '#features'
-                    : item === 'How It Works' ? '#how-it-works'
-                    : item === 'Science'   ? '#solution'
-                    : item === 'Pricing'   ? '#survey'
+                    item === 'The problem'    ? '#problem'
+                    : item === 'What we do'   ? '#solution'
+                    : item === 'Who it’s for' ? '#who-its-for'
+                    : item === 'Shape Nura'   ? '#survey'
                     : '#'
                   return (
                     <li key={item}>
                       <a
                         href={href}
                         className="footer-link"
-                        style={{ color: 'rgba(255,255,255,0.36)', fontSize: '0.82rem' }}
+                        style={{ color: 'rgba(255,255,255,0.56)', fontSize: '0.82rem' }}
                       >
                         {item}
                       </a>
@@ -142,25 +141,25 @@ export default function Footer() {
             paddingTop: 'clamp(1.25rem,2.5vw,1.75rem)',
             borderTop: '1px solid rgba(255,255,255,0.06)',
             fontSize: '0.76rem',
-            color: 'rgba(255,255,255,0.26)',
+            color: 'rgba(255,255,255,0.52)',
           }}
         >
-          <p>© {new Date().getFullYear()} Nura Inc. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Nura · Made in Bengaluru.</p>
           <div className="flex gap-5">
             {['Privacy', 'Terms', 'Cookies'].map((item) => (
               <a
                 key={item}
                 href={`/${item.toLowerCase()}`}
                 className="footer-link"
-                style={{ color: 'rgba(255,255,255,0.26)' }}
+                style={{ color: 'rgba(255,255,255,0.52)' }}
               >
                 {item}
               </a>
             ))}
           </div>
           <p>
-            Made with intention ·{' '}
-            <span className="text-nb-sage">Nura</span>
+            Food that fits your goals ·{' '}
+            <span className="text-nb-sage">nura.</span>
           </p>
         </div>
       </div>

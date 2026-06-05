@@ -5,6 +5,7 @@ import Problem from '@/components/sections/Problem'
 import Solution from '@/components/sections/Solution'
 import HowItWorks from '@/components/sections/HowItWorks'
 import Features from '@/components/sections/Features'
+import WhoItsFor from '@/components/sections/WhoItsFor'
 import SurveyIntro from '@/components/sections/SurveyIntro'
 import Survey from '@/components/Survey'
 import Footer from '@/components/Footer'
@@ -25,19 +26,22 @@ export default function Page() {
         {/* 02 — The Problem */}
         <Problem />
 
-        {/* 03 — The Solution */}
+        {/* 03 — What Nura Does */}
         <Solution />
 
         {/* 04 — How It Works */}
         <HowItWorks />
 
-        {/* 05 — Features */}
+        {/* 05 — Why Nura */}
         <Features />
 
-        {/* 06 — Survey Intro CTA */}
+        {/* 06 — Who It's For */}
+        <WhoItsFor />
+
+        {/* 07 — Shape Nura (Survey Intro CTA) */}
         <SurveyIntro />
 
-        {/* 07 — 11-Question Survey */}
+        {/* 08 — 11-Question Survey */}
         <Survey />
       </main>
 

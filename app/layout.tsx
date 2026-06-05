@@ -19,14 +19,20 @@ const inter = Inter_Tight({
 })
 
 export const metadata: Metadata = {
-  title: 'Nura — Your Personalized Nutrition Blueprint',
+  metadataBase: new URL('https://www.celliqui.in'),
+  title: 'Nura — Food That Fits Your Goals',
   description:
-    'Nura uses AI to create a nutritional blueprint unique to your body, goals, and life. Not a diet. A system.',
-  keywords: ['personalized nutrition', 'AI nutrition', 'wellness', 'healthy eating', 'nutrition blueprint'],
+    'Nura delivers meals designed around your body and your goals — so you don’t have to plan, calculate, or compromise. Launching in Bengaluru.',
+  keywords: ['healthy meal delivery', 'goal-based meals', 'Bengaluru meal delivery', 'fitness meals', 'macro meals', 'healthy eating Bengaluru'],
   openGraph: {
-    title: 'Nura — Your Personalized Nutrition Blueprint',
-    description: 'Nura uses AI to create a nutritional blueprint unique to your body, goals, and life.',
+    title: 'Nura — Food That Fits Your Goals',
+    description: 'Meals designed around your body and your goals. Eating right is simple — doing it every day is the hard part. Launching in Bengaluru.',
     type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Nura — Food That Fits Your Goals',
+    description: 'Meals designed around your body and your goals. Launching in Bengaluru.',
   },
 }
 

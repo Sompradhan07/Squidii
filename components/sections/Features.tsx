@@ -4,20 +4,19 @@ import { useEffect, useRef } from 'react'
 import { gsap } from '@/lib/gsap'
 
 /* ─── Feature SVG icons ──────────────────────────────────────────────────── */
-const MetabolicIcon = () => (
+const GoalIcon = () => (
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-    <polyline points="2 12 5 7 8 13 11 9 14 14 17 6 20 12" />
+    <circle cx="12" cy="12" r="9" /><circle cx="12" cy="12" r="5" /><circle cx="12" cy="12" r="1" fill="currentColor" stroke="none" />
+  </svg>
+)
+const PortionIcon = () => (
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="12" cy="13" r="8" /><path d="M12 13L12 5M12 13l5.5 5.5" /><path d="M4 13a8 8 0 0116 0" />
   </svg>
 )
 const ChronoIcon = () => (
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-    <circle cx="12" cy="12" r="9" />
-    <path d="M12 7v5l3.5 3.5" />
-  </svg>
-)
-const GutIcon = () => (
-  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M12 3C8.5 6.5 6 9.5 6 13a6 6 0 0012 0c0-3.5-2.5-6.5-6-10z" />
+    <circle cx="12" cy="12" r="9" /><path d="M12 7v5l3.5 3.5" />
   </svg>
 )
 const MacroIcon = () => (
@@ -30,24 +29,24 @@ const MacroIcon = () => (
     <circle cx="10" cy="18" r="1.5" fill="currentColor" stroke="none" />
   </svg>
 )
-const RecoveryIcon = () => (
+const RupeeIcon = () => (
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M13 2L4 14h8l-1 8 9-12h-8l1-8z" />
+    <path d="M6 4h12M6 8.5h12M6 13l8 7M6 8.5a4 4 0 010 5h3" />
   </svg>
 )
-const SleepIcon = () => (
+const PinIcon = () => (
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
+    <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z" /><circle cx="12" cy="10" r="3" />
   </svg>
 )
 
 const features = [
-  { icon: <MetabolicIcon />, title: 'Metabolic Mapping',   desc: 'Real-time metabolic rate calculation based on your unique physiology — not population BMR averages.',                  tag: 'Core',        accent: '#5a6c48' },
-  { icon: <ChronoIcon />,    title: 'Chrono-Nutrition',     desc: 'Optimal meal timing synced to your circadian rhythm for maximum nutrient absorption.',                                   tag: 'Advanced',    accent: '#8da674' },
-  { icon: <GutIcon />,       title: 'Gut Intelligence',     desc: 'Personalized prebiotic and probiotic recommendations based on microbiome health signals.',                                tag: 'Precision',   accent: '#c28c48' },
-  { icon: <MacroIcon />,     title: 'Adaptive Macros',      desc: 'Protein, fat, and carb targets that shift dynamically with your training load and life cycles.',                         tag: 'Core',        accent: '#5a6c48' },
-  { icon: <RecoveryIcon />,  title: 'Recovery Nutrition',   desc: 'Post-activity fuel windows calibrated to your exercise type, intensity, and recovery profile.',                          tag: 'Performance', accent: '#c07458' },
-  { icon: <SleepIcon />,     title: 'Stress & Sleep Sync',  desc: 'Nutritional support that responds to your cortisol patterns, sleep quality, and nervous system state.',                  tag: 'Holistic',    accent: '#8da674' },
+  { icon: <GoalIcon />,    title: 'Built Around Your Goal', desc: 'Every meal is designed for fat loss, muscle, managing a condition — whatever you’re actually working toward.',          tag: 'Core',      accent: '#5a6c48' },
+  { icon: <PortionIcon />, title: 'The Right Portions',     desc: 'Whether you track macros closely or just want the right amount on your plate, your portions are handled for you.',     tag: 'Core',      accent: '#8da674' },
+  { icon: <ChronoIcon />,  title: 'No Planning Required',   desc: 'No meal-prep Sundays, no calorie-tracking apps, no deciding what to eat by Thursday. We take the deciding off your plate.', tag: 'Effortless', accent: '#c28c48' },
+  { icon: <MacroIcon />,   title: 'Macros That Match',      desc: 'Protein, carbs, and fats balanced to your body and your goal — without you ever doing the math.',                       tag: 'Precision', accent: '#5a6c48' },
+  { icon: <RupeeIcon />,   title: 'Priced for Every Day',   desc: 'Built to be your daily meals, not a luxury splurge. Real, goal-aligned food at an everyday price.',                     tag: 'Everyday',  accent: '#c07458' },
+  { icon: <PinIcon />,     title: 'Made for Bengaluru',     desc: 'We’re launching city by city — cooked fresh and built for how people here actually eat and live.',                      tag: 'Local',     accent: '#8da674' },
 ]
 
 export default function Features() {
@@ -87,7 +86,7 @@ export default function Features() {
         <div ref={titleRef} style={{ marginBottom: 'clamp(2.75rem,5.5vw,4.5rem)' }}>
           <div className="ri nura-label-row mb-4">
             <div className="line-olive" />
-            <span className="label-sm text-nb-olive">Precision Features</span>
+            <span className="label-sm text-nb-olive">Why Nura</span>
           </div>
 
           <div className="grid grid-cols-1 gap-4">
@@ -95,15 +94,15 @@ export default function Features() {
               className="ri font-display font-medium tracking-[-0.022em] leading-none text-nb-heading"
               style={{ fontSize: 'clamp(1.85rem, 4.5vw, 4.4rem)', maxWidth: '20ch' }}
             >
-              Every dimension of your nutrition,{' '}
-              <span className="text-nb-olive italic">mastered.</span>
+              Everything handled,{' '}
+              <span className="text-nb-olive italic">so you don’t have to.</span>
             </h2>
             <p
               className="ri nura-prose text-nb-body leading-[1.74]"
               style={{ fontSize: 'clamp(0.88rem,1.18vw,0.98rem)' }}
             >
-              Nura integrates the full spectrum of nutritional science into one coherent,
-              living system that adapts to your unique biology every day.
+              From your goal to your plate, Nura takes care of the parts that make
+              eating right hard to keep up — so you can just eat well and get on with your day.
             </p>
           </div>
         </div>

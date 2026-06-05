@@ -10,7 +10,6 @@ const ic = {
   lightning:<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M13 2L4 14h8l-1 8 9-12h-8l1-8z"/></svg>,
   leaf:     <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M2 22c0-8.4 5.4-15.5 13-17.5"/><path d="M22 2C22 13.8 13.8 22 2 22"/></svg>,
   fork:     <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 002-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 00-5 5v6h3.5a1.5 1.5 0 011.5 1.5V22"/></svg>,
-  sprout:   <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M7 20h10M12 20V10M12 10C8 10 5 7 5 4c4 0 7 3 7 6z"/><path d="M12 10c4 0 7-3 7-6-4 0-7 3-7 6z"/></svg>,
   shield:   <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>,
   clock:    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 3.5"/></svg>,
   moon:     <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>,
@@ -47,155 +46,152 @@ type Question = {
   sub: string; hint: string; ctx: string
   multi: boolean; opts: Opt[]
   grid?: boolean
+  open?: boolean
+  placeholder?: string
 }
 type Answers = Record<number, string | string[]>
 type SubmitState = 'idle' | 'submitting' | 'success' | 'error'
 
-/* ─── Questions — 10 questions, product-validation framework ─────────────── */
+/* ─── Questions — 11-question Bengaluru validation survey (content doc) ──── */
 const questions: Question[] = [
   {
     id: 1, label: 'Your City',
-    qPre: 'Where do you', qEm: 'currently live?',
-    sub: "We're launching city by city — this helps us prioritize.",
-    hint: 'Nura is mapping supply and partner kitchens by city.',
+    qPre: 'Which city do you', qEm: 'live in?',
+    sub: 'We’re launching city by city — starting with Bengaluru.',
+    hint: 'This tells us where to build supply and partner kitchens first.',
     ctx: 'Locating you', multi: false, grid: true,
     opts: [
-      { v: 'bengaluru', l: 'Bengaluru',  icon: ic.leaf      },
-      { v: 'mumbai',    l: 'Mumbai',     icon: ic.wave      },
-      { v: 'delhi',     l: 'Delhi NCR',  icon: ic.sun       },
-      { v: 'hyderabad', l: 'Hyderabad',  icon: ic.star      },
-      { v: 'pune',      l: 'Pune',       icon: ic.brain     },
-      { v: 'chennai',   l: 'Chennai',    icon: ic.moon      },
-      { v: 'other',     l: 'Other',      icon: ic.pin       },
+      { v: 'bengaluru', l: 'Bengaluru', icon: ic.pin   },
+      { v: 'mumbai',    l: 'Mumbai',    icon: ic.wave  },
+      { v: 'delhi',     l: 'Delhi NCR', icon: ic.sun   },
+      { v: 'hyderabad', l: 'Hyderabad', icon: ic.star  },
+      { v: 'pune',      l: 'Pune',      icon: ic.brain },
+      { v: 'other',     l: 'Other',     icon: ic.dots  },
     ],
   },
   {
     id: 2, label: 'About You',
-    qPre: 'Which best', qEm: 'describes you?',
+    qPre: 'What do', qEm: 'you do?',
     sub: 'Your routine shapes when and how you need to eat.',
-    hint: 'Your lifestyle determines your meal timing and energy needs.',
-    ctx: 'Understanding your life', multi: false, grid: true,
+    hint: 'Lifestyle drives your meal timing and energy needs.',
+    ctx: 'Understanding your routine', multi: false,
     opts: [
-      { v: 'professional', l: 'Working Professional', icon: ic.briefcase },
+      { v: 'professional', l: 'Working professional', icon: ic.briefcase },
       { v: 'student',      l: 'Student',              icon: ic.book      },
-      { v: 'entrepreneur', l: 'Entrepreneur',          icon: ic.lightning },
-      { v: 'freelancer',   l: 'Freelancer',            icon: ic.infinity  },
-      { v: 'homemaker',    l: 'Homemaker',             icon: ic.heart     },
-      { v: 'other',        l: 'Other',                 icon: ic.dots      },
+      { v: 'other',        l: 'Other',                icon: ic.dots      },
     ],
   },
   {
-    id: 3, label: 'Health Goal',
-    qPre: 'What is your primary', qEm: 'health goal?',
-    sub: 'This shapes your entire nutritional strategy.',
-    hint: 'Personalizing your complete nutritional roadmap.',
-    ctx: 'Mapping your goals', multi: false,
+    id: 3, label: 'Activity',
+    qPre: 'How often do you', qEm: 'work out?',
+    sub: 'Activity level changes how much fuel your body needs.',
+    hint: 'Higher output usually means more protein and calories.',
+    ctx: 'Reading your activity', multi: false,
     opts: [
-      { v: 'lose-fat',   l: 'Lose Fat',                  icon: ic.flame     },
-      { v: 'muscle',     l: 'Build Muscle',              icon: ic.barbell   },
-      { v: 'energy',     l: 'Improve Energy',            icon: ic.lightning },
-      { v: 'gut',        l: 'Improve Gut Health',        icon: ic.leaf      },
-      { v: 'nutrition',  l: 'Better Overall Nutrition',  icon: ic.sprout    },
-      { v: 'condition',  l: 'Manage a Health Condition', icon: ic.shield    },
+      { v: '5plus',  l: '5+ days',   icon: ic.flame   },
+      { v: '3-4',    l: '3–4 days',  icon: ic.barbell },
+      { v: '1-2',    l: '1–2 days',  icon: ic.wave    },
+      { v: 'rarely', l: 'Rarely',    icon: ic.moon    },
     ],
   },
   {
-    id: 4, label: 'Biggest Challenge',
-    qPre: "What's your biggest challenge", qEm: 'with eating healthy?',
-    sub: "We'll build your plan around solving this friction point first.",
+    id: 4, label: 'Where You Stand',
+    qPre: 'Your relationship with', qEm: 'healthy eating?',
+    sub: 'There’s no wrong answer — this helps us meet you where you are.',
+    hint: 'We build around your current habits, not against them.',
+    ctx: 'Where you stand today', multi: false,
+    opts: [
+      { v: 'want-unsure',       l: 'Want to but don’t know how',        icon: ic.question },
+      { v: 'know-inconsistent', l: 'Know what to do, can’t stay consistent', icon: ic.cycle },
+      { v: 'track',             l: 'Actively track calories/macros',    icon: ic.brain    },
+      { v: 'dont-think',        l: 'Don’t think about it',              icon: ic.dots     },
+    ],
+  },
+  {
+    id: 5, label: 'Your Goal',
+    qPre: 'Primary', qEm: 'fitness goal?',
+    sub: 'This shapes every meal we’d design for you.',
+    hint: 'Your goal is the foundation of your plan.',
+    ctx: 'Mapping your goal', multi: false,
+    opts: [
+      { v: 'fat-loss',  l: 'Fat loss',          icon: ic.flame   },
+      { v: 'muscle',    l: 'Muscle gain',       icon: ic.barbell },
+      { v: 'healthier', l: 'Eat healthier',     icon: ic.leaf    },
+      { v: 'condition', l: 'Manage a condition', icon: ic.shield  },
+    ],
+  },
+  {
+    id: 6, label: 'Biggest Challenge',
+    qPre: 'Hardest part about', qEm: 'eating right?',
+    sub: 'We’ll build around solving this friction point first.',
     hint: 'Pinpoints what has been stopping you — so Nura can fix it.',
-    ctx: 'Identifying your friction', multi: false,
+    ctx: 'Finding your friction', multi: false,
     opts: [
-      { v: 'no-plan',    l: 'No time to plan meals',          icon: ic.clock    },
-      { v: 'no-cook',    l: 'No time to cook',                icon: ic.fork     },
-      { v: 'confused',   l: 'Confused about nutrition',       icon: ic.question },
-      { v: 'consistency',l: "Can't stay consistent",          icon: ic.cycle    },
-      { v: 'expensive',  l: 'Healthy food is expensive',      icon: ic.rupee    },
-      { v: 'no-options', l: 'Lack of healthy options nearby', icon: ic.pin      },
+      { v: 'figuring',    l: 'Figuring out what and how much', icon: ic.question },
+      { v: 'no-time',     l: 'No time to cook/plan',           icon: ic.clock    },
+      { v: 'consistency', l: 'Staying consistent',             icon: ic.cycle    },
+      { v: 'affordable',  l: 'Affordable options',             icon: ic.rupee    },
     ],
   },
   {
-    id: 5, label: 'Ordering Habits',
-    qPre: 'How often do you', qEm: 'order food online?',
-    sub: 'This helps us understand where Nura fits your current routine.',
-    hint: 'Maps Nura into your existing food behaviour — not against it.',
-    ctx: 'Profiling your habits', multi: false,
+    id: 7, label: 'Frustration',
+    qPre: 'How often does this', qEm: 'frustrate you?',
+    sub: 'How often this gets in your way tells us how urgent it is.',
+    hint: 'The more it frustrates you, the more Nura can help.',
+    ctx: 'Gauging the pain', multi: false,
     opts: [
-      { v: 'daily', l: 'Daily',               icon: ic.infinity },
-      { v: '3-5x',  l: '3–5 times per week',  icon: ic.grid     },
-      { v: '1-2x',  l: '1–2 times per week',  icon: ic.wave     },
-      { v: 'rarely',l: 'Rarely',              icon: ic.moon     },
+      { v: 'daily',     l: 'Almost every day', icon: ic.infinity },
+      { v: 'few-week',  l: 'Few times a week', icon: ic.grid     },
+      { v: 'sometimes', l: 'Sometimes',        icon: ic.wave     },
+      { v: 'rarely',    l: 'Rarely',           icon: ic.moon     },
     ],
   },
   {
-    id: 6, label: 'Personalization',
-    qPre: 'How important is personalized', qEm: 'nutrition to you?',
-    sub: 'Your answer helps us understand how much depth to build.',
-    hint: 'This guides how precisely Nura calibrates your blueprint.',
-    ctx: 'Gauging your priority', multi: false,
+    id: 8, label: 'Past Attempts',
+    qPre: 'Tried fixing this', qEm: 'recently?',
+    sub: 'What hasn’t worked is as useful to us as what has.',
+    hint: 'Nura learns from your past attempts to avoid repeating them.',
+    ctx: 'Learning from your history', multi: false,
     opts: [
-      { v: 'extremely', l: 'Extremely important', icon: ic.star  },
-      { v: 'very',      l: 'Very important',       icon: ic.heart },
-      { v: 'somewhat',  l: 'Somewhat important',   icon: ic.wave  },
-      { v: 'not',       l: 'Not important',        icon: ic.frown },
+      { v: 'meal-prep',    l: 'Meal prepping',  icon: ic.fork     },
+      { v: 'diet-app',     l: 'Diet plan/app',  icon: ic.brain    },
+      { v: 'meal-service', l: 'Meal service',   icon: ic.delivery },
+      { v: 'havent',       l: 'Haven’t acted',  icon: ic.dots     },
     ],
   },
   {
-    id: 7, label: 'Past Attempts',
-    qPre: 'Have you ever', qEm: 'tried any of these?',
-    sub: "What hasn't worked for you is as important as what has.",
-    hint: 'Nura learns from your past attempts to avoid the same mistakes.',
-    ctx: 'Learning from history', multi: true,
-    opts: [
-      { v: 'meal-prep', l: 'Meal prep',            icon: ic.fork     },
-      { v: 'diet-plan', l: 'Diet plan',             icon: ic.grid     },
-      { v: 'coach',     l: 'Nutrition coach',       icon: ic.person   },
-      { v: 'delivery',  l: 'Meal delivery service', icon: ic.delivery },
-      { v: 'app',       l: 'Calorie tracking app',  icon: ic.brain    },
-      { v: 'none',      l: 'None of the above',     icon: ic.check    },
-    ],
-  },
-  {
-    id: 8, label: 'Willingness to Pay',
-    qPre: 'How much would you spend for', qEm: 'a personalized healthy meal?',
-    sub: 'Real results must work within real budgets.',
-    hint: 'Helps Nura design plans that are sustainable for your wallet.',
+    id: 9, label: 'Willingness to Pay',
+    qPre: 'Expected price', qEm: 'per meal?',
+    sub: 'Real results have to work within real budgets.',
+    hint: 'Helps us price Nura to be daily, not a splurge.',
     ctx: 'Aligning with your budget', multi: false,
     opts: [
-      { v: 'u120',    l: 'Under ₹120', icon: ic.rupee   },
-      { v: '120-150', l: '₹120 – 150', icon: ic.rupee   },
-      { v: '150-200', l: '₹150 – 200', icon: ic.card    },
-      { v: '200-250', l: '₹200 – 250', icon: ic.diamond },
-      { v: '250p',    l: '₹250+',      icon: ic.star    },
+      { v: 'u100',     l: 'Under ₹100', icon: ic.rupee   },
+      { v: '100-150',  l: '₹100–150',   icon: ic.rupee   },
+      { v: '150-200',  l: '₹150–200',   icon: ic.card    },
+      { v: '200plus',  l: '₹200+',      icon: ic.diamond },
     ],
   },
   {
-    id: 9, label: 'Interest Level',
-    qPre: 'If Nura handled your nutrition,', qEm: 'how interested would you be?',
+    id: 10, label: 'Interest Level',
+    qPre: 'Interested in', qEm: 'trying Nura?',
     sub: 'Honest feedback helps us build something people actually want.',
     hint: 'Your candid answer shapes what we prioritize building first.',
     ctx: 'Measuring demand', multi: false,
     opts: [
-      { v: 'definitely', l: 'Definitely interested', icon: ic.star     },
-      { v: 'interested', l: 'Interested',             icon: ic.heart    },
-      { v: 'maybe',      l: 'Maybe',                  icon: ic.question },
-      { v: 'no',         l: 'Not interested',         icon: ic.frown    },
+      { v: 'yes',   l: 'Yes',   icon: ic.star     },
+      { v: 'maybe', l: 'Maybe', icon: ic.question },
+      { v: 'no',    l: 'No',    icon: ic.frown    },
     ],
   },
   {
-    id: 10, label: 'Decision Drivers',
-    qPre: 'What would convince you', qEm: 'to try Nura?',
-    sub: 'Pick everything that matters — we want to earn your trust.',
-    hint: 'These are the features we will build and prove to you first.',
-    ctx: 'Understanding your trust signals', multi: true,
-    opts: [
-      { v: 'results',    l: 'Better health results',         icon: ic.target   },
-      { v: 'convenient', l: 'Convenience',                   icon: ic.lightning},
-      { v: 'price',      l: 'Affordable pricing',            icon: ic.rupee    },
-      { v: 'personal',   l: 'Personalization',               icon: ic.brain    },
-      { v: 'experts',    l: 'Doctor / Nutritionist support', icon: ic.shield   },
-      { v: 'quality',    l: 'High-quality ingredients',      icon: ic.leaf     },
-    ],
+    id: 11, label: 'Early Access',
+    qPre: 'Want', qEm: 'early access?',
+    sub: 'Drop your WhatsApp number or email and we’ll reach out when Nura is ready.',
+    hint: 'Optional — leave it blank if you’d rather not.',
+    ctx: 'Stay in the loop', multi: false, open: true,
+    placeholder: 'WhatsApp number or email (optional)',
+    opts: [],
   },
 ]
 
@@ -330,7 +326,8 @@ function SuccessScreen() {
           <em className="text-nb-olive" style={{ fontStyle: 'italic' }}>shape Nura.</em>
         </h2>
         <p className="text-nb-body leading-[1.78] max-w-[40ch] mx-auto" style={{ fontSize: '0.9rem' }}>
-          Your feedback is helping us build personalized nutrition that actually fits people&rsquo;s lives.
+          We&rsquo;ll reach out when Nura is ready — thank you for helping us build
+          something that actually fits people&rsquo;s lives.
         </p>
       </div>
 
@@ -368,7 +365,7 @@ function SuccessScreen() {
         </a>
 
         <button
-          onClick={() => document.getElementById('how-it-works')?.scrollIntoView({ behavior: 'smooth' })}
+          onClick={() => document.getElementById('who-its-for')?.scrollIntoView({ behavior: 'smooth' })}
           className="text-nb-muted bg-transparent border-none cursor-pointer transition-colors duration-200"
           style={{ fontSize: '0.82rem' }}
           onMouseEnter={(e) => { e.currentTarget.style.color = 'var(--nb-heading)' }}
@@ -432,6 +429,10 @@ export default function Survey() {
     })
   }, [q])
 
+  const setOpen = useCallback((value: string) => {
+    setAnswers((prev) => ({ ...prev, [q.id]: value }))
+  }, [q])
+
   const handleSubmit = useCallback(async (currentAnswers: Answers) => {
     setSubmitState('submitting')
 
@@ -452,6 +453,7 @@ export default function Survey() {
       q8:  formatAnswer(currentAnswers[8]),
       q9:  formatAnswer(currentAnswers[9]),
       q10: formatAnswer(currentAnswers[10]),
+      q11: formatAnswer(currentAnswers[11]),
       deviceType,
       browser,
       referrer,
@@ -491,9 +493,11 @@ export default function Survey() {
     }
   }, [idx, transition])
 
-  const answered = q.multi
-    ? ((answers[q.id] as string[] | undefined) ?? []).length > 0
-    : !!answers[q.id]
+  const answered = q.open
+    ? true
+    : q.multi
+      ? ((answers[q.id] as string[] | undefined) ?? []).length > 0
+      : !!answers[q.id]
 
   /* Spring-animate CTA on first answer activation */
   useEffect(() => {
@@ -528,8 +532,8 @@ export default function Survey() {
     <section
       id="survey"
       ref={sectionRef}
-      className="min-h-screen flex flex-col relative overflow-hidden"
-      aria-label="Nura Nutrition Survey"
+      className="min-h-svh flex flex-col relative overflow-hidden"
+      aria-label="Shape Nura — 11-question survey"
       style={{ background: 'linear-gradient(180deg, #f0ebe1 0%, #f5f0e8 40%, #faf7f2 100%)' }}
     >
       {/* Grain texture */}
@@ -568,7 +572,7 @@ export default function Survey() {
                   </span>
                 </div>
                 <span className="text-nb-muted italic" style={{ fontSize: '0.64rem' }}>
-                  {idx < 6 ? 'Building your nutrition blueprint…' : `~${minsLeft} min remaining`}
+                  {idx < 6 ? 'Help us get Nura right…' : `~${minsLeft} min remaining`}
                 </span>
               </div>
 
@@ -615,7 +619,7 @@ export default function Survey() {
                 <p className="text-nb-body leading-[1.72] max-w-[40ch] mx-auto" style={{ fontSize: '0.875rem' }}>
                   {q.sub}
                 </p>
-                <p className="text-nb-subtle italic mt-2.5" style={{ fontSize: '0.70rem' }}>
+                <p className="text-nb-muted italic mt-2.5" style={{ fontSize: '0.70rem' }}>
                   {q.hint}
                   {q.multi && (
                     <span className="not-italic ml-2 opacity-70">· Select all that apply</span>
@@ -623,30 +627,42 @@ export default function Survey() {
                 </p>
               </div>
 
-              {/* Option cards */}
-              <div
-                style={{
-                  marginBottom: 'clamp(1.75rem,3.5vw,2.5rem)',
-                  ...(q.grid
-                    ? { display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.5rem' }
-                    : { display: 'flex', flexDirection: 'column', gap: '0.625rem' }),
-                }}
-              >
-                {q.opts.map((opt) => {
-                  const sel = q.multi
-                    ? ((answers[q.id] as string[] | undefined) ?? []).includes(opt.v)
-                    : answers[q.id] === opt.v
-                  return (
-                    <Option
-                      key={opt.v}
-                      opt={opt}
-                      selected={sel}
-                      multi={q.multi}
-                      onSelect={() => select(opt.v)}
-                    />
-                  )
-                })}
-              </div>
+              {/* Options or open text input */}
+              {q.open ? (
+                <div style={{ marginBottom: 'clamp(1.75rem,3.5vw,2.5rem)' }}>
+                  <input
+                    type="text"
+                    inputMode="text"
+                    autoComplete="off"
+                    value={(answers[q.id] as string | undefined) ?? ''}
+                    onChange={(e) => setOpen(e.target.value)}
+                    onKeyDown={(e) => { if (e.key === 'Enter' && !submitting) next() }}
+                    placeholder={q.placeholder}
+                    aria-label={`${q.qPre} ${q.qEm}`}
+                    className="survey-input"
+                  />
+                </div>
+              ) : (
+                <div
+                  className={q.grid ? 'survey-opts-grid' : 'survey-opts-stack'}
+                  style={{ marginBottom: 'clamp(1.75rem,3.5vw,2.5rem)' }}
+                >
+                  {q.opts.map((opt) => {
+                    const sel = q.multi
+                      ? ((answers[q.id] as string[] | undefined) ?? []).includes(opt.v)
+                      : answers[q.id] === opt.v
+                    return (
+                      <Option
+                        key={opt.v}
+                        opt={opt}
+                        selected={sel}
+                        multi={q.multi}
+                        onSelect={() => select(opt.v)}
+                      />
+                    )
+                  })}
+                </div>
+              )}
 
               {/* Error banner */}
               {submitState === 'error' && (
@@ -710,15 +726,15 @@ export default function Survey() {
                       <svg className="animate-spin" width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden>
                         <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2.5" strokeDasharray="32" strokeDashoffset="12" strokeLinecap="round"/>
                       </svg>
-                      Saving your answers…
+                      Sending your answers…
                     </>
                   ) : answered ? (
                     <>
                       {submitState === 'error'
                         ? 'Retry'
                         : isLast
-                          ? 'Complete My Blueprint'
-                          : 'Continue Building Blueprint'}
+                          ? (q.open && !(answers[q.id]) ? 'Skip & Finish' : 'Submit & Finish')
+                          : 'Continue'}
                       <svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden>
                         <path d="M6 4l4 4-4 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                       </svg>

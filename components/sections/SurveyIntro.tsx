@@ -6,52 +6,50 @@ import { gsap } from '@/lib/gsap'
 /* ─── Signal SVG icons ───────────────────────────────────────────────────── */
 const signals = [
   {
-    label: 'Metabolic type',
+    label: 'Your city',
     icon: (
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-        <polyline points="2 12 5 7 8 13 11 9 14 14 17 6 20 12" />
+        <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z" /><circle cx="12" cy="10" r="3" />
       </svg>
     ),
   },
   {
-    label: 'Gut health',
+    label: 'Your work',
     icon: (
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M12 3C8.5 6.5 6 9.5 6 13a6 6 0 0012 0c0-3.5-2.5-6.5-6-10z" />
+        <rect x="2" y="7" width="20" height="14" rx="2" /><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2" />
       </svg>
     ),
   },
   {
-    label: 'Activity patterns',
+    label: 'Your goal',
     icon: (
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-        <circle cx="12" cy="5" r="2" />
-        <path d="M5 22l3-8 2 4 2-6 2 4 2-4 3 10" strokeLinejoin="round" />
+        <circle cx="12" cy="12" r="9" /><circle cx="12" cy="12" r="4" /><circle cx="12" cy="12" r="1" fill="currentColor" stroke="none" />
       </svg>
     ),
   },
   {
-    label: 'Stress response',
+    label: 'Your habits',
     icon: (
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M12 2a5 5 0 015 5c0 4-5 8-5 8S7 11 7 7a5 5 0 015-5z" />
-        <circle cx="12" cy="7" r="1.5" fill="currentColor" stroke="none" />
+        <circle cx="12" cy="12" r="9" /><path d="M12 7v5l3.5 3.5" />
       </svg>
     ),
   },
   {
-    label: 'Sleep quality',
+    label: 'Your budget',
     icon: (
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
+        <path d="M6 4h12M6 8h12M6 12l7 8M6 8a4 4 0 010 5h3" />
       </svg>
     ),
   },
   {
-    label: 'Food relationships',
+    label: 'Early access',
     icon: (
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" />
+        <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z" />
       </svg>
     ),
   },
@@ -93,7 +91,7 @@ export default function SurveyIntro() {
           {/* Kicker */}
           <div className="ri flex items-center gap-3">
             <div className="line-olive" />
-            <span className="label-sm text-nb-olive">Your Journey Begins</span>
+            <span className="label-sm text-nb-olive">Shape Nura</span>
             <div className="line-olive" />
           </div>
 
@@ -102,8 +100,8 @@ export default function SurveyIntro() {
             className="ri font-display font-medium tracking-[-0.026em] leading-[0.95] text-nb-heading"
             style={{ fontSize: 'clamp(2rem, 5.5vw, 5.6rem)' }}
           >
-            Discover your<br />
-            <span className="text-nb-olive italic">nutritional blueprint</span>
+            Help us<br />
+            <span className="text-nb-olive italic">build Nura</span>
           </h2>
 
           {/* Body */}
@@ -111,8 +109,8 @@ export default function SurveyIntro() {
             className="ri text-nb-body leading-[1.76]"
             style={{ fontSize: 'clamp(0.88rem,1.18vw,0.98rem)', maxWidth: '38ch' }}
           >
-            11 precise questions. Infinite personalization.
-            Your complete nutritional identity revealed in 3 minutes.
+            We&rsquo;re building this in Bengaluru. This 2-minute survey shapes
+            what Nura becomes — your honest answers decide what we build first.
           </p>
 
           {/* Meta stats */}
@@ -121,9 +119,9 @@ export default function SurveyIntro() {
             style={{ gap: 'clamp(1.5rem, 4vw, 3.5rem)' }}
           >
             {[
-              { value: '11',    label: 'Questions'       },
-              { value: '3 min', label: 'Duration'        },
-              { value: '∞',     label: 'Personalization' },
+              { value: '11',    label: 'Questions' },
+              { value: '2 min', label: 'Duration'  },
+              { value: '100%',  label: 'Anonymous' },
             ].map((item) => (
               <div key={item.label} className="text-center">
                 <div
@@ -146,13 +144,13 @@ export default function SurveyIntro() {
               style={{ maxWidth: '290px' }}
               onClick={() => document.getElementById('survey')?.scrollIntoView({ behavior: 'smooth' })}
             >
-              Begin My Assessment
+              Help Us Build Nura
               <svg width="13" height="13" viewBox="0 0 20 20" fill="none" aria-hidden>
                 <path d="M4 10h12M12 6l4 4-4 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </button>
             <p className="text-nb-subtle" style={{ fontSize: '0.72rem' }}>
-              Free forever · No account required · Instant results
+              No spam · No sign-ups · Just honest answers
             </p>
           </div>
 
@@ -162,7 +160,7 @@ export default function SurveyIntro() {
             style={{ paddingTop: '1.625rem' }}
           >
             <p className="label-sm text-nb-muted mb-4" style={{ fontSize: '0.60rem' }}>
-              What Nura reads about you
+              What the survey covers
             </p>
             <div className="flex flex-wrap justify-center gap-[0.45rem]">
               {signals.map((s) => (

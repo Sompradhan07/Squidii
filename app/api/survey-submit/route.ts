@@ -1,18 +1,19 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { randomUUID } from 'crypto'
 
-/* ── Allowed answer values per question ──────────────────────────────────── */
+/* ── Allowed answer values per question — 11-question validation survey ───── */
 const ALLOWED: Record<string, readonly string[]> = {
-  q1:  ['bengaluru','mumbai','delhi','hyderabad','pune','chennai','other'],
-  q2:  ['professional','student','entrepreneur','freelancer','homemaker','other'],
-  q3:  ['lose-fat','muscle','energy','gut','nutrition','condition'],
-  q4:  ['no-plan','no-cook','confused','consistency','expensive','no-options'],
-  q5:  ['daily','3-5x','1-2x','rarely'],
-  q6:  ['extremely','very','somewhat','not'],
-  q7:  ['meal-prep','diet-plan','coach','delivery','app','none'],   // multi
-  q8:  ['u120','120-150','150-200','200-250','250p'],
-  q9:  ['definitely','interested','maybe','no'],
-  q10: ['results','convenient','price','personal','experts','quality'], // multi
+  q1:  ['bengaluru','mumbai','delhi','hyderabad','pune','other'],
+  q2:  ['professional','student','other'],
+  q3:  ['5plus','3-4','1-2','rarely'],
+  q4:  ['want-unsure','know-inconsistent','track','dont-think'],
+  q5:  ['fat-loss','muscle','healthier','condition'],
+  q6:  ['figuring','no-time','consistency','affordable'],
+  q7:  ['daily','few-week','sometimes','rarely'],
+  q8:  ['meal-prep','diet-app','meal-service','havent'],
+  q9:  ['u100','100-150','150-200','200plus'],
+  q10: ['yes','maybe','no'],
+  // q11 (early-access contact) is free text — validated via sanitizeString, not an allow-list
 }
 
 function sanitizeString(v: unknown, maxLen = 512): string {
@@ -48,13 +49,16 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ success: false, error: 'Invalid JSON' }, { status: 400 })
   }
 
-  /* Validate and sanitize each answer */
+  /* Validate and sanitize each multiple-choice answer (q1–q10) */
   const answers = Object.fromEntries(
     ['q1','q2','q3','q4','q5','q6','q7','q8','q9','q10'].map((k) => [k, validateAnswer(k, body[k])])
   )
 
-  /* Require at minimum Q1–Q3 answered */
-  if (!answers.q1 || !answers.q2 || !answers.q3) {
+  /* Q11 — early-access contact (WhatsApp / email) is free text, optional */
+  const q11 = sanitizeString(body.q11, 256)
+
+  /* Require at minimum: city, primary goal, and interest level */
+  if (!answers.q1 || !answers.q5 || !answers.q10) {
     return NextResponse.json({ success: false, error: 'Incomplete survey' }, { status: 400 })
   }
 
@@ -62,6 +66,7 @@ export async function POST(request: NextRequest) {
     submissionId: randomUUID(),
     timestamp:    new Date().toISOString(),
     ...answers,
+    q11,
     deviceType: sanitizeString(body.deviceType, 32),
     browser:    sanitizeString(body.browser,    64),
     referrer:   sanitizeString(body.referrer,   256),

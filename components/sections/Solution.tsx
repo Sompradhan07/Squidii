@@ -3,7 +3,7 @@
 import { useEffect, useRef } from 'react'
 import { gsap } from '@/lib/gsap'
 
-/* ─── SVG icon set — replaces unprofessional geometric chars ─────────────── */
+/* ─── SVG icon set ───────────────────────────────────────────────────────── */
 const PillarIcons = {
   body: (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -12,19 +12,16 @@ const PillarIcons = {
       <path d="M3 10l1.5 1.5M21 10l-1.5 1.5M12 4V2" />
     </svg>
   ),
-  adapt: (
+  consistent: (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M4 12a8 8 0 018-8" />
-      <path d="M20 12a8 8 0 01-8 8" />
-      <path d="M12 4L9.5 6.5 12 9" />
-      <path d="M12 20l2.5-2.5L12 15" />
+      <path d="M21 12a9 9 0 11-2.64-6.36" />
+      <path d="M21 3v5h-5" />
+      <path d="M9 12l2 2 4-4" />
     </svg>
   ),
-  precision: (
+  priced: (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="12" cy="12" r="9" />
-      <circle cx="12" cy="12" r="4" />
-      <circle cx="12" cy="12" r="1" fill="currentColor" stroke="none" />
+      <path d="M6 3h12M6 8h12M6 13l8 8M6 8a4 4 0 000 5h3" />
     </svg>
   ),
 }
@@ -32,20 +29,20 @@ const PillarIcons = {
 const pillars = [
   {
     icon: PillarIcons.body,
-    title: 'Body Intelligence',
-    desc: 'Nura analyzes your unique metabolism, biomarkers, and body composition to understand how you specifically process nutrients.',
+    title: 'Built Around Your Body',
+    desc: 'Whether you track macros closely or just want the right portions, every meal is designed for you.',
     accent: '#5a6c48',
   },
   {
-    icon: PillarIcons.adapt,
-    title: 'Dynamic Adaptation',
-    desc: 'Your blueprint evolves with you — adjusting in real time for activity, sleep, stress, and life changes.',
+    icon: PillarIcons.consistent,
+    title: 'Consistent Without Effort',
+    desc: 'No meal prep Sundays, no calorie counting apps, no giving up by Thursday.',
     accent: '#8da674',
   },
   {
-    icon: PillarIcons.precision,
-    title: 'Precision Nourishment',
-    desc: 'Exact macros, micros, and meal timing — calibrated to your biology, not a population average.',
+    icon: PillarIcons.priced,
+    title: 'Priced for Every Day',
+    desc: 'Built to be your daily meals, not a luxury splurge.',
     accent: '#c28c48',
   },
 ]
@@ -93,25 +90,25 @@ function MacroBar({ label, pct, color, value }: {
   )
 }
 
-/* ─── SVG icons replacing emoji in stats row ─────────────────────────────── */
+/* ─── SVG icons for the meal-snapshot stats row ──────────────────────────── */
 const CalIcon = () => (
   <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
     <path d="M12 2a9 9 0 100 18A9 9 0 0012 2z"/>
     <path d="M12 7v5l3 2"/>
   </svg>
 )
-const WaterIcon = () => (
+const ProteinIcon = () => (
   <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M12 2C8 7 5 11 5 14.5a7 7 0 0014 0C19 11 16 7 12 2z"/>
+    <line x1="6.5" y1="12" x2="17.5" y2="12"/><rect x="3.5" y="8" width="3" height="8" rx="1.5"/><rect x="17.5" y="8" width="3" height="8" rx="1.5"/>
   </svg>
 )
-const SleepIcon = () => (
+const DeliveryIcon = () => (
   <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+    <path d="M5 17H3a2 2 0 01-2-2V5a2 2 0 012-2h11a2 2 0 012 2v3"/><rect x="9" y="11" width="14" height="10" rx="1"/><circle cx="12" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
   </svg>
 )
 
-/* ─── Nutrition Blueprint Card ────────────────────────────────────────────── */
+/* ─── Nura Meal Snapshot Card ─────────────────────────────────────────────── */
 function NutritionCard() {
   const cardRef = useRef<HTMLDivElement>(null)
 
@@ -137,9 +134,9 @@ function NutritionCard() {
   ]
 
   const dailyStats = [
-    { icon: <CalIcon />,   value: '1,840', label: 'kcal / day',  color: 'var(--nb-olive)' },
-    { icon: <WaterIcon />, value: '2.4L',  label: 'Hydration',   color: '#4e9cc4'          },
-    { icon: <SleepIcon />, value: '8h',    label: 'Sleep goal',  color: '#8a6cc8'          },
+    { icon: <CalIcon />,      value: '485',   label: 'kcal / meal', color: 'var(--nb-olive)' },
+    { icon: <ProteinIcon />,  value: '38g',   label: 'Protein',     color: '#c28c48'         },
+    { icon: <DeliveryIcon />, value: 'Daily', label: 'Delivered',   color: '#8da674'         },
   ]
 
   return (
@@ -168,10 +165,10 @@ function NutritionCard() {
       >
         <div>
           <p style={{ fontSize: '0.62rem', fontWeight: 700, letterSpacing: '0.13em', textTransform: 'uppercase', color: 'var(--nb-olive)', marginBottom: '0.2rem' }}>
-            Your Blueprint
+            A Nura Meal
           </p>
           <h3 style={{ fontSize: '1.02rem', fontWeight: 600, color: 'var(--nb-heading)', lineHeight: 1.2 }}>
-            Personalized Nutrition Snapshot
+            Designed Around Your Goal
           </h3>
         </div>
         <div style={{
@@ -184,26 +181,26 @@ function NutritionCard() {
           border: '1px solid rgba(90,108,72,0.18)',
           whiteSpace: 'nowrap',
         }}>
-          Generated for You
+          Built for You
         </div>
       </div>
 
       {/* Macros */}
       <div className="nc-item" style={{ padding: '1.2rem 1.5rem', borderBottom: '1px solid var(--nb-border2)' }}>
         <p style={{ fontSize: '0.66rem', fontWeight: 700, letterSpacing: '0.11em', textTransform: 'uppercase', color: 'var(--nb-muted)', marginBottom: '0.85rem' }}>
-          Daily Macro Targets
+          This Meal’s Macros
         </p>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '0.7rem' }}>
-          <MacroBar label="Protein"       pct={32} color="var(--nb-olive)" value="142g" />
-          <MacroBar label="Carbohydrates" pct={45} color="var(--nb-amber)" value="202g" />
-          <MacroBar label="Healthy Fats"  pct={23} color="var(--nb-terra)" value="57g"  />
+          <MacroBar label="Protein"       pct={31} color="var(--nb-olive)" value="38g" />
+          <MacroBar label="Carbohydrates" pct={42} color="var(--nb-amber)" value="52g" />
+          <MacroBar label="Healthy Fats"  pct={27} color="var(--nb-terra)" value="15g" />
         </div>
       </div>
 
       {/* Key ingredients */}
       <div className="nc-item" style={{ padding: '1.2rem 1.5rem', borderBottom: '1px solid var(--nb-border2)' }}>
         <p style={{ fontSize: '0.66rem', fontWeight: 700, letterSpacing: '0.11em', textTransform: 'uppercase', color: 'var(--nb-muted)', marginBottom: '0.85rem' }}>
-          Today's Key Ingredients
+          What’s In It
         </p>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.5rem' }}>
           {ingredients.map((ing) => (
@@ -218,7 +215,7 @@ function NutritionCard() {
         </div>
       </div>
 
-      {/* Daily stats row — SVG icons replace emoji */}
+      {/* Meal stats row */}
       <div className="nc-item" style={{ padding: '1rem 1.5rem', display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '0.5rem' }}>
         {dailyStats.map((s) => (
           <div
@@ -240,7 +237,7 @@ function NutritionCard() {
   )
 }
 
-/* ─── Solution section ────────────────────────────────────────────────────── */
+/* ─── What Nura Does ──────────────────────────────────────────────────────── */
 export default function Solution() {
   const sectionRef  = useRef<HTMLElement>(null)
   const titleRef    = useRef<HTMLDivElement>(null)
@@ -276,23 +273,23 @@ export default function Solution() {
 
             <div className="nura-label-row">
               <div className="line-olive" />
-              <span className="label-sm text-nb-olive">The Nura Solution</span>
+              <span className="label-sm text-nb-olive">What We Do</span>
             </div>
 
             <div ref={titleRef}>
               {[
-                { text: 'Finally.',              color: 'var(--nb-muted)',   italic: false },
-                { text: 'Nutrition that',        color: 'var(--nb-heading)', italic: false },
-                { text: 'truly knows you.',      color: 'var(--nb-olive)',   italic: true  },
+                { text: 'You focus on', color: 'var(--nb-heading)', italic: false },
+                { text: 'your goals.',  color: 'var(--nb-heading)', italic: false },
+                { text: 'We’ll handle the food.', color: 'var(--nb-olive)', italic: true },
               ].map(({ text, color, italic }, i) => (
                 <div key={i} style={{ overflow: 'hidden' }}>
                   <div
                     className="rl font-display font-medium"
                     style={{
-                      fontSize: 'clamp(2rem, 4.5vw, 4.4rem)',
-                      lineHeight: 0.94,
+                      fontSize: 'clamp(1.9rem, 4.2vw, 4rem)',
+                      lineHeight: 0.96,
                       letterSpacing: '-0.022em',
-                      marginBottom: '0.08em',
+                      marginBottom: '0.06em',
                       color,
                       fontStyle: italic ? 'italic' : undefined,
                     }}
@@ -307,12 +304,12 @@ export default function Solution() {
               className="nura-prose text-nb-body leading-[1.76]"
               style={{ fontSize: 'clamp(0.9rem, 1.2vw, 1rem)' }}
             >
-              Nura doesn't just track what you eat — it understands who you are.
-              Your metabolism, lifestyle, and goals become the foundation of a
-              nutritional system that actually works for your body.
+              Tell us what you’re working toward — losing weight, building muscle,
+              managing a health condition, or just eating right without the guesswork.
+              Nura designs every meal around what your body specifically needs.
             </p>
 
-            {/* Pillars — SVG icons, hover state, clean rows */}
+            {/* The three benefits */}
             <div ref={pillarsRef} style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
               {pillars.map((p) => (
                 <div key={p.title} className="pl pillar-row">
@@ -339,7 +336,7 @@ export default function Solution() {
                 className="btn btn-olive"
                 onClick={() => document.getElementById('survey')?.scrollIntoView({ behavior: 'smooth' })}
               >
-                Build My Blueprint
+                Help Us Build Nura
                 <svg width="11" height="11" viewBox="0 0 16 16" fill="none" aria-hidden>
                   <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
@@ -347,7 +344,7 @@ export default function Solution() {
             </div>
           </div>
 
-          {/* ── Right: Nutrition card ─────────────────────────────────── */}
+          {/* ── Right: meal snapshot card ─────────────────────────────── */}
           <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
             <NutritionCard />
           </div>

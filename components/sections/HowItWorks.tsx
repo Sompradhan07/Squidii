@@ -28,27 +28,27 @@ const steps = [
   {
     number: '01',
     icon: <AssessIcon />,
-    title: 'Blueprint Assessment',
-    subtitle: 'Tell us who you are',
-    desc: 'An 11-question precision assessment captures your biology, goals, lifestyle, and relationship with food.',
-    duration: '3 min',
+    title: 'Tell Us Your Goal',
+    subtitle: 'Two minutes, that’s it',
+    desc: 'Fat loss, building muscle, managing a condition, or just eating right — you tell us what you’re working toward.',
+    duration: '2 min',
     accent: '#d4a660',
   },
   {
     number: '02',
     icon: <BrainIcon />,
-    title: 'Intelligence Synthesis',
-    subtitle: 'Nura learns your body',
-    desc: 'Our AI cross-references thousands of biomarker patterns and metabolic signals to build a complete nutritional model of you.',
-    duration: 'Instant',
+    title: 'We Design Your Meals',
+    subtitle: 'Built around your body',
+    desc: 'Every meal is portioned and balanced for what your body specifically needs. No counting, no calculating, no guesswork.',
+    duration: 'Handled',
     accent: '#c28c48',
   },
   {
     number: '03',
     icon: <BlueprintIcon />,
-    title: 'Your Living Blueprint',
-    subtitle: 'Nutrition built for you',
-    desc: 'Receive your personalized blueprint — exact macros, meal timing, and ingredient priorities that evolve as your life evolves.',
+    title: 'Eat Well, Every Day',
+    subtitle: 'Consistency without effort',
+    desc: 'Goal-aligned meals that fit your routine and your budget — built to be your daily food, not a once-in-a-while splurge.',
     duration: 'Ongoing',
     accent: '#e8a870',
   },
@@ -123,34 +123,21 @@ export default function HowItWorks() {
             className="ri font-display font-medium tracking-[-0.024em] leading-none"
             style={{ fontSize: 'clamp(2rem, 5vw, 5rem)', marginBottom: '1.25rem', color: 'var(--nb-cream)' }}
           >
-            Three steps to your<br />
-            <span style={{ color: 'var(--nb-amber)', fontStyle: 'italic' }}>nutritional truth</span>
+            Three steps.<br />
+            <span style={{ color: 'var(--nb-amber)', fontStyle: 'italic' }}>Zero guesswork.</span>
           </h2>
 
           <p
             className="ri nura-prose-center leading-[1.74]"
             style={{ color: 'rgba(255,255,255,0.46)', fontSize: 'clamp(0.88rem,1.2vw,0.98rem)' }}
           >
-            Precision without complexity. Depth without overwhelm.
-            Nura makes the science invisible so the results feel effortless.
+            No macro math, no meal-prep Sundays. Tell us your goal — Nura handles
+            the planning, the portions, and the cooking.
           </p>
         </div>
 
         {/* ── Steps grid ──────────────────────────────────────────────── */}
         <div ref={stepsRef} className="relative" style={{ marginBottom: 'clamp(2.25rem, 4.5vw, 3.5rem)' }}>
-
-          {/* Horizontal connector line — desktop only */}
-          <div
-            aria-hidden
-            className="hidden lg:block absolute"
-            style={{
-              top: '38px',
-              left: 'calc(16.66% + 24px)',
-              right: 'calc(16.66% + 24px)',
-              height: '1px',
-              background: 'linear-gradient(90deg, transparent, rgba(255,248,232,0.09) 20%, rgba(255,248,232,0.09) 80%, transparent)',
-            }}
-          />
 
           <div className="nura-grid-3">
             {steps.map((step) => (
@@ -215,7 +202,7 @@ export default function HowItWorks() {
             className="btn btn-cream"
             onClick={() => document.getElementById('survey')?.scrollIntoView({ behavior: 'smooth' })}
           >
-            Start My Assessment
+            Help Us Build Nura
             <svg width="11" height="11" viewBox="0 0 16 16" fill="none" aria-hidden>
               <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
             </svg>

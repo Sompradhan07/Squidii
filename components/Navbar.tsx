@@ -4,9 +4,10 @@ import { useEffect, useRef, useState, useCallback } from 'react'
 import { gsap } from '@/lib/gsap'
 
 const NAV_LINKS = [
-  { label: 'How It Works', id: 'how-it-works' },
-  { label: 'Features', id: 'features' },
-  { label: 'Blueprint', id: 'survey' },
+  { label: 'The problem', id: 'problem' },
+  { label: 'What we do', id: 'solution' },
+  { label: "Who it's for", id: 'who-its-for' },
+  { label: 'Shape Nura', id: 'survey' },
 ]
 
 export default function Navbar() {
@@ -49,7 +50,7 @@ export default function Navbar() {
             aria-label="Nura — scroll to top"
             className="font-display font-medium text-xl tracking-[0.04em] text-nb-heading bg-transparent border-none cursor-pointer p-0 leading-none"
           >
-            Nura
+            nura.
           </button>
 
           {/* Desktop nav links */}
@@ -71,7 +72,7 @@ export default function Navbar() {
               onClick={() => scrollTo('survey')}
               className="btn btn-olive px-5 py-2 text-xs min-h-[38px]"
             >
-              Get Blueprint
+              Help Build It
             </button>
           </div>
 
@@ -134,13 +135,13 @@ export default function Navbar() {
               className="btn btn-olive w-full"
               tabIndex={menuOpen ? 0 : -1}
             >
-              Get Your Blueprint
+              Help Us Build Nura
             </button>
           </div>
         </div>
         <div className="shrink-0 pb-6 text-center">
           <span className="label-sm text-nb-subtle text-[0.6rem]">
-            Nura · Personalized Nutrition Intelligence
+            nura. · Food That Fits Your Goals
           </span>
         </div>
       </div>

@@ -28,7 +28,7 @@ function NutrientBadge({
   }, [])
 
   return (
-    <div ref={ref} className="absolute z-10" style={{ opacity: 0, ...style }}>
+    <div ref={ref} className="hero-orbital-badge absolute z-10" style={{ opacity: 0, ...style }}>
       <div className="nb-badge-orbital">
         <span className="nb-orbital-dot" />
         <span className="nb-orbital-val">{value}</span>
@@ -84,23 +84,28 @@ export default function Hero() {
         { opacity: 0 },
         { opacity: 1, duration: 0.5, delay: d + 0.72 })
 
-      /* Scroll-triggered parallax pin */
+      /* Scroll-triggered parallax pin — desktop only.
+         Pinning + scrub interacts badly with mobile URL-bar resizes and the
+         reordered mobile layout, so it is scoped to ≥1024px. */
       if (!reduced) {
-        const tl = gsap.timeline({
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'top top',
-            end: '+=120%',
-            scrub: 1.2,
-            pin: true,
-            pinSpacing: true,
-            invalidateOnRefresh: true,
-          },
+        const mm = gsap.matchMedia()
+        mm.add('(min-width: 1024px)', () => {
+          const tl = gsap.timeline({
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: 'top top',
+              end: '+=120%',
+              scrub: 1.2,
+              pin: true,
+              pinSpacing: true,
+              invalidateOnRefresh: true,
+            },
+          })
+          /* Bowl scales up gradually over the full pin duration.
+             Text stays visible for the first 75% of scroll, then fades in the final 25%. */
+          tl.to(bowlColRef.current, { scale: 1.06, duration: 1 }, 0)
+          tl.to(textColRef.current, { opacity: 0, y: -24, duration: 0.25 }, 0.75)
         })
-        /* Bowl scales up gradually over the full pin duration.
-           Text stays visible for the first 75% of scroll, then fades in the final 25%. */
-        tl.to(bowlColRef.current, { scale: 1.06, duration: 1 }, 0)
-        tl.to(textColRef.current, { opacity: 0, y: -24, duration: 0.25 }, 0.75)
       }
     }, sectionRef)
 
@@ -155,16 +160,15 @@ export default function Hero() {
           <div className="overflow-hidden">
             <div className="hero-reveal-line flex items-center gap-2.5">
               <div className="line-olive" />
-              <span className="label-sm text-nb-olive">Personalized Nutrition</span>
+              <span className="label-sm text-nb-olive">Launching in Bengaluru</span>
             </div>
           </div>
 
-          {/* Headline — three-line reveal */}
+          {/* Headline — two-line reveal */}
           <div>
             {[
-              { text: 'Your Body.',      cls: 'text-nb-heading' },
-              { text: 'Your Blueprint.', cls: 'text-nb-olive italic' },
-              { text: 'Your Nura.',      cls: 'text-nb-heading' },
+              { text: 'Eating right', cls: 'text-nb-heading' },
+              { text: 'is simple.',   cls: 'text-nb-olive italic' },
             ].map(({ text, cls }) => (
               <div key={text} className="overflow-hidden" style={{ marginBottom: '0.04em' }}>
                 <div className={`hero-reveal-line hero-headline ${cls}`}>{text}</div>
@@ -172,19 +176,25 @@ export default function Hero() {
             ))}
           </div>
 
-          {/* Subtitle */}
+          {/* Subheadline + body */}
           <p
             ref={subtitleRef}
             className="text-nb-body"
             style={{
               opacity: 0,
-              maxWidth: '35ch',
+              maxWidth: '38ch',
               fontSize: 'clamp(0.88rem, 1.20vw, 1rem)',
               lineHeight: 1.78,
             }}
           >
-            Not a diet. Not a meal plan. A personalized nutritional system
-            built around the unique biology of your body.
+            <span
+              className="block font-display italic text-nb-heading"
+              style={{ fontSize: 'clamp(1.05rem, 1.9vw, 1.45rem)', lineHeight: 1.3, marginBottom: '0.7rem', fontStyle: 'italic' }}
+            >
+              Doing it every single day? That&rsquo;s the hard part.
+            </span>
+            Nura delivers meals designed around your body and your goals — so you don&rsquo;t
+            have to plan, calculate, or compromise.
           </p>
 
           {/* CTA row */}
@@ -193,16 +203,16 @@ export default function Hero() {
               className="btn btn-olive"
               onClick={() => document.getElementById('survey')?.scrollIntoView({ behavior: 'smooth' })}
             >
-              Discover Your Blueprint
+              Help Us Build Nura
               <svg width="11" height="11" viewBox="0 0 16 16" fill="none" aria-hidden>
                 <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </button>
             <button
               className="btn btn-outline"
-              onClick={() => document.getElementById('how-it-works')?.scrollIntoView({ behavior: 'smooth' })}
+              onClick={() => document.getElementById('problem')?.scrollIntoView({ behavior: 'smooth' })}
             >
-              See How It Works
+              See the problem
             </button>
           </div>
 
@@ -217,9 +227,9 @@ export default function Hero() {
             }}
           >
             {[
-              { value: '12k+',  label: 'People nourished'    },
-              { value: '98%',   label: 'Feel the difference' },
-              { value: '3 min', label: 'To your blueprint'   },
+              { value: 'Bengaluru', label: 'Launching first' },
+              { value: '2 min',     label: 'To shape Nura'   },
+              { value: 'Daily',     label: 'Not a splurge'   },
             ].map((s) => (
               <div key={s.value}>
                 <div
@@ -256,10 +266,10 @@ export default function Hero() {
             Sized small and soft so they support the bowl without competing.
             Approximate clock positions: 2h / 3h / 5h / 8h
           */}
-          <NutrientBadge value="22g"   label="Protein"   style={{ top: '18%',   right: '9%'  }} />
-          <NutrientBadge value="Ω-3"   label="Omega 3"   style={{ top: '45%',   right: '5%'  }} />
-          <NutrientBadge value="7g"    label="Fiber"     style={{ bottom: '30%', right: '9%' }} />
-          <NutrientBadge value="GI·Low" label="Glycemic" style={{ bottom: '20%', left: '5%' }} />
+          <NutrientBadge value="38g" label="Protein"  style={{ top: '18%',   right: '9%'  }} />
+          <NutrientBadge value="52g" label="Carbs"    style={{ top: '45%',   right: '5%'  }} />
+          <NutrientBadge value="485" label="Calories" style={{ bottom: '30%', right: '9%' }} />
+          <NutrientBadge value="15g" label="Fats"     style={{ bottom: '20%', left: '5%'  }} />
         </div>
       </div>
 
@@ -277,7 +287,7 @@ export default function Hero() {
         className="absolute bottom-5 left-1/2 -translate-x-1/2 flex flex-col items-center gap-[0.3rem] cursor-pointer z-10"
         style={{ opacity: 0 }}
       >
-        <span className="label-sm text-nb-muted" style={{ fontSize: '0.55rem' }}>Scroll</span>
+        <span className="label-sm text-nb-muted" style={{ fontSize: '0.55rem', whiteSpace: 'nowrap' }}>Scroll to explore</span>
         <div style={{ width: 1, height: 22, background: 'linear-gradient(to bottom, rgba(90,108,72,0.48), transparent)' }} />
       </div>
 
