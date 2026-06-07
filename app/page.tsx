@@ -3,8 +3,6 @@ import Navbar from '@/components/Navbar'
 import Hero from '@/components/Hero'
 import Problem from '@/components/sections/Problem'
 import Solution from '@/components/sections/Solution'
-import HowItWorks from '@/components/sections/HowItWorks'
-import Features from '@/components/sections/Features'
 import WhoItsFor from '@/components/sections/WhoItsFor'
 import SurveyIntro from '@/components/sections/SurveyIntro'
 import Survey from '@/components/Survey'
@@ -29,19 +27,13 @@ export default function Page() {
         {/* 03 — What Nura Does */}
         <Solution />
 
-        {/* 04 — How It Works */}
-        <HowItWorks />
-
-        {/* 05 — Why Nura */}
-        <Features />
-
-        {/* 06 — Who It's For */}
+        {/* 04 — Who It's For */}
         <WhoItsFor />
 
-        {/* 07 — Shape Nura (Survey Intro CTA) */}
+        {/* 05 — Shape Nura (Survey Intro CTA) */}
         <SurveyIntro />
 
-        {/* 08 — 10-Question Survey */}
+        {/* 06 — 11-Question Survey */}
         <Survey />
       </main>
 

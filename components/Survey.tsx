@@ -50,7 +50,7 @@ type Question = {
 type Answers = Record<number, string | string[]>
 type SubmitState = 'idle' | 'submitting' | 'success' | 'error'
 
-/* ─── Questions — 10-question validation survey ───────────────────────────── */
+/* ─── Questions — 11-question validation survey ───────────────────────────── */
 const questions: Question[] = [
   {
     id: 1, label: 'Your City',
@@ -168,6 +168,19 @@ const questions: Question[] = [
       { v: '100-150',  l: '₹100–150',   icon: ic.rupee   },
       { v: '150-200',  l: '₹150–200',   icon: ic.card    },
       { v: '200plus',  l: '₹200+',      icon: ic.diamond },
+    ],
+  },
+  {
+    id: 11, label: 'The Value of Results',
+    qPre: 'Would you pay more for a dish personalized to your body —', qEm: 'one that transforms how you look and feel?',
+    sub: 'Real food, built around your goals, with results you can actually see.',
+    hint: 'This tells us what results-driven personalization is worth to you.',
+    ctx: 'Pricing the transformation', multi: false,
+    opts: [
+      { v: 'yes-worth', l: 'Yes — real results are worth it', icon: ic.star     },
+      { v: 'yes-fair',  l: 'Yes, if the price is fair',       icon: ic.heart    },
+      { v: 'maybe',     l: 'Maybe, once I see it works',      icon: ic.question },
+      { v: 'no',        l: 'No, standard pricing only',       icon: ic.frown    },
     ],
   },
   {
@@ -438,6 +451,7 @@ export default function Survey() {
       q8:  formatAnswer(currentAnswers[8]),
       q9:  formatAnswer(currentAnswers[9]),
       q10: formatAnswer(currentAnswers[10]),
+      q11: formatAnswer(currentAnswers[11]),
       deviceType,
       browser,
       referrer,
@@ -515,7 +529,7 @@ export default function Survey() {
       id="survey"
       ref={sectionRef}
       className="min-h-svh flex flex-col relative overflow-hidden"
-      aria-label="Shape Nura — 10-question survey"
+      aria-label="Shape Nura — 11-question survey"
       style={{ background: 'linear-gradient(180deg, #f0ebe1 0%, #f5f0e8 40%, #faf7f2 100%)' }}
     >
       {/* Grain texture */}

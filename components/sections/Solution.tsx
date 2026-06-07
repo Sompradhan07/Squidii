@@ -134,8 +134,8 @@ function NutritionCard() {
   ]
 
   const dailyStats = [
-    { icon: <CalIcon />,      value: '485',   label: 'kcal / meal', color: 'var(--nb-olive)' },
-    { icon: <ProteinIcon />,  value: '38g',   label: 'Protein',     color: '#c28c48'         },
+    { icon: <CalIcon />,      value: '480',   label: 'kcal / meal', color: 'var(--nb-olive)' },
+    { icon: <ProteinIcon />,  value: '7g',    label: 'Protein',     color: '#c28c48'         },
     { icon: <DeliveryIcon />, value: 'Daily', label: 'Delivered',   color: '#8da674'         },
   ]
 
@@ -191,9 +191,9 @@ function NutritionCard() {
           This Meal’s Macros
         </p>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '0.7rem' }}>
-          <MacroBar label="Protein"       pct={31} color="var(--nb-olive)" value="38g" />
-          <MacroBar label="Carbohydrates" pct={42} color="var(--nb-amber)" value="52g" />
-          <MacroBar label="Healthy Fats"  pct={27} color="var(--nb-terra)" value="15g" />
+          <MacroBar label="Protein"       pct={6}  color="var(--nb-olive)" value="7g"  />
+          <MacroBar label="Carbohydrates" pct={74} color="var(--nb-amber)" value="86g" />
+          <MacroBar label="Healthy Fats"  pct={20} color="var(--nb-terra)" value="10g" />
         </div>
       </div>
 

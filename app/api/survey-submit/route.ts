@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { randomUUID } from 'crypto'
 
-/* ── Allowed answer values per question — 10-question validation survey ───── */
+/* ── Allowed answer values per question — 11-question validation survey ───── */
 const ALLOWED: Record<string, readonly string[]> = {
   q1:  ['bengaluru','mumbai','delhi','hyderabad','pune','other'],
   q2:  ['professional','student','other'],
@@ -13,6 +13,7 @@ const ALLOWED: Record<string, readonly string[]> = {
   q8:  ['meal-prep','diet-app','meal-service','havent'],
   q9:  ['u100','100-150','150-200','200plus'],
   q10: ['yes','maybe','no'],
+  q11: ['yes-worth','yes-fair','maybe','no'],
 }
 
 function sanitizeString(v: unknown, maxLen = 512): string {

@@ -119,7 +119,7 @@ export default function SurveyIntro() {
             style={{ gap: 'clamp(1.5rem, 4vw, 3.5rem)' }}
           >
             {[
-              { value: '10',    label: 'Questions' },
+              { value: '11',    label: 'Questions' },
               { value: '2 min', label: 'Duration'  },
               { value: '100%',  label: 'Anonymous' },
             ].map((item) => (

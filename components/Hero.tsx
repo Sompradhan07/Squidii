@@ -266,10 +266,10 @@ export default function Hero() {
             Sized small and soft so they support the bowl without competing.
             Approximate clock positions: 2h / 3h / 5h / 8h
           */}
-          <NutrientBadge value="38g" label="Protein"  style={{ top: '18%',   right: '9%'  }} />
-          <NutrientBadge value="52g" label="Carbs"    style={{ top: '45%',   right: '5%'  }} />
-          <NutrientBadge value="485" label="Calories" style={{ bottom: '30%', right: '9%' }} />
-          <NutrientBadge value="15g" label="Fats"     style={{ bottom: '20%', left: '5%'  }} />
+          <NutrientBadge value="7g"  label="Protein"  style={{ top: '18%',   right: '9%'  }} />
+          <NutrientBadge value="86g" label="Carbs"    style={{ top: '45%',   right: '5%'  }} />
+          <NutrientBadge value="480" label="Calories" style={{ bottom: '30%', right: '9%' }} />
+          <NutrientBadge value="10g" label="Fats"     style={{ bottom: '20%', left: '5%'  }} />
         </div>
       </div>
 
