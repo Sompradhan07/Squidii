@@ -5,8 +5,8 @@
  * (app/api/survey-submit/route.ts → process.env.GOOGLE_SHEET_WEBHOOK_URL)
  * and appends one row per submission to the bound Google Sheet.
  *
- * PAYLOAD SHAPE sent by the site (10-question survey, no contact field):
- *   { submissionId, timestamp, q1..q10, deviceType, browser, referrer }
+ * PAYLOAD SHAPE sent by the site (11-question survey):
+ *   { submissionId, timestamp, q1..q11, deviceType, browser, referrer }
  *
  * ── HOW TO UPDATE YOUR EXISTING BACKEND ──────────────────────────
  * 1. Open your Google Sheet → Extensions → Apps Script.
@@ -66,25 +66,43 @@ function setupHeaders() {
   sheet.setFrozenRows(1);
 }
 
-/** Receives a POST from the Nura site and appends a row. */
+/** Receives a POST from the Nura site and appends a row — keyed by header LABEL,
+    so adding a new question (e.g. q11) just appends a column and never misaligns
+    existing data. Self-healing: missing columns are created automatically. */
 function doPost(e) {
   var lock = LockService.getScriptLock();
   try {
-    lock.waitLock(15000); // serialize concurrent submissions
+    lock.waitLock(20000); // serialize concurrent submissions
 
     var data = JSON.parse(e.postData.contents);
     var sheet = getSheet_();
 
-    // Write headers if the sheet is empty.
-    if (sheet.getLastRow() === 0) {
-      sheet.appendRow(headerRow_());
+    // Read the current header row ([] if the sheet is blank).
+    var lastCol = sheet.getLastColumn();
+    var header = (sheet.getLastRow() === 0 || lastCol === 0)
+      ? []
+      : sheet.getRange(1, 1, 1, lastCol).getValues()[0].map(String);
+
+    // Ensure every FIELDS column exists; append any missing ones (e.g. q11).
+    var changed = (header.length === 0);
+    for (var f = 0; f < FIELDS.length; f++) {
+      if (header.indexOf(FIELDS[f][1]) === -1) {
+        header.push(FIELDS[f][1]);
+        changed = true;
+      }
+    }
+    if (changed) {
+      sheet.getRange(1, 1, 1, header.length).setValues([header]);
       sheet.setFrozenRows(1);
     }
 
-    var row = FIELDS.map(function (f) {
-      var v = data[f[0]];
-      return (v === undefined || v === null) ? '' : v;
-    });
+    // Build the row aligned to the header by column label.
+    var row = [];
+    for (var c = 0; c < header.length; c++) row.push('');
+    for (var k = 0; k < FIELDS.length; k++) {
+      var v = data[FIELDS[k][0]];
+      row[header.indexOf(FIELDS[k][1])] = (v === undefined || v === null) ? '' : v;
+    }
     sheet.appendRow(row);
 
     return ContentService

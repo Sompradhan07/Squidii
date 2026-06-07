@@ -49,9 +49,9 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ success: false, error: 'Invalid JSON' }, { status: 400 })
   }
 
-  /* Validate and sanitize each multiple-choice answer (q1–q10) */
+  /* Validate and sanitize each multiple-choice answer (q1–q11) */
   const answers = Object.fromEntries(
-    ['q1','q2','q3','q4','q5','q6','q7','q8','q9','q10'].map((k) => [k, validateAnswer(k, body[k])])
+    ['q1','q2','q3','q4','q5','q6','q7','q8','q9','q10','q11'].map((k) => [k, validateAnswer(k, body[k])])
   )
 
   /* Require at minimum: city, primary goal, and interest level */
