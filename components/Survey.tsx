@@ -50,12 +50,12 @@ type Question = {
 type Answers = Record<number, string | string[]>
 type SubmitState = 'idle' | 'submitting' | 'success' | 'error'
 
-/* ─── Questions — 10-question Bengaluru validation survey ─────────────────── */
+/* ─── Questions — 10-question validation survey ───────────────────────────── */
 const questions: Question[] = [
   {
     id: 1, label: 'Your City',
     qPre: 'Which city do you', qEm: 'live in?',
-    sub: 'We’re launching city by city — starting with Bengaluru.',
+    sub: 'This helps us decide which cities to launch in first.',
     hint: 'This tells us where to build supply and partner kitchens first.',
     ctx: 'Locating you', multi: false, grid: true,
     opts: [

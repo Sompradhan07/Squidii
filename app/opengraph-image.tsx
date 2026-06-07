@@ -35,7 +35,7 @@ export default function Image() {
               fontWeight: 600,
             }}
           >
-            Launching in Bengaluru
+            Launching soon
           </div>
         </div>
 

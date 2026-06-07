@@ -90,7 +90,7 @@ export default function BowlImage({ className = '' }: { className?: string }) {
     <div
       ref={wrapRef}
       className={`relative flex items-center justify-center ${className}`}
-      style={{ perspective: '1100px' }}
+      style={{ perspective: '1100px', containerType: 'size' }}
     >
 
       {/* ── Layer 0: Warm table surface — grounds the bowl on a surface ── */}
@@ -158,7 +158,10 @@ export default function BowlImage({ className = '' }: { className?: string }) {
         ref={imageRef}
         className="relative"
         style={{
-          width: '85%',
+          /* Size the square to the SMALLER of the column's width/height (container
+             units) so the bowl never overflows its column — fixes the mobile case
+             where a short, wide column let the square spill onto the headline. */
+          width: 'min(84cqw, 84cqh)',
           aspectRatio: '1 / 1',
           willChange: 'transform',
           transformStyle: 'preserve-3d',

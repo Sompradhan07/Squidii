@@ -564,7 +564,7 @@ html.lenis, html.lenis body { height: auto; }
   .hero-text-col  { order: 2 !important; gap: 0.875rem !important; }
   .hero-bowl-col  {
     order: 1 !important;
-    height: clamp(220px, 44vw, 280px) !important;
+    height: clamp(270px, 75vw, 340px) !important;
     min-height: unset !important;
   }
 }

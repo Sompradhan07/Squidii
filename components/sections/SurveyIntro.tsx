@@ -109,7 +109,7 @@ export default function SurveyIntro() {
             className="ri text-nb-body leading-[1.76]"
             style={{ fontSize: 'clamp(0.88rem,1.18vw,0.98rem)', maxWidth: '38ch' }}
           >
-            We&rsquo;re building this in Bengaluru. This 2-minute survey shapes
+            We&rsquo;re building Nura right now. This 2-minute survey shapes
             what Nura becomes — your honest answers decide what we build first.
           </p>
 

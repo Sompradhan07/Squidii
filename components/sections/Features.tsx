@@ -46,7 +46,7 @@ const features = [
   { icon: <ChronoIcon />,  title: 'No Planning Required',   desc: 'No meal-prep Sundays, no calorie-tracking apps, no deciding what to eat by Thursday. We take the deciding off your plate.', tag: 'Effortless', accent: '#c28c48' },
   { icon: <MacroIcon />,   title: 'Macros That Match',      desc: 'Protein, carbs, and fats balanced to your body and your goal — without you ever doing the math.',                       tag: 'Precision', accent: '#5a6c48' },
   { icon: <RupeeIcon />,   title: 'Priced for Every Day',   desc: 'Built to be your daily meals, not a luxury splurge. Real, goal-aligned food at an everyday price.',                     tag: 'Everyday',  accent: '#c07458' },
-  { icon: <PinIcon />,     title: 'Made for Bengaluru',     desc: 'We’re launching city by city — cooked fresh and built for how people here actually eat and live.',                      tag: 'Local',     accent: '#8da674' },
+  { icon: <PinIcon />,     title: 'Launching Near You',     desc: 'We’re rolling out city by city — fresh meals, cooked daily, built for how people actually eat and live.',                    tag: 'Local',     accent: '#8da674' },
 ]
 
 export default function Features() {

@@ -102,7 +102,7 @@ export default function Footer() {
           <div className="flex flex-col gap-3">
             <p className="label-sm" style={{ color: 'rgba(255,255,255,0.55)', fontSize: '0.62rem' }}>nura.</p>
             <p style={{ color: 'rgba(255,255,255,0.52)', fontSize: '0.80rem', lineHeight: 1.72 }}>
-              Built in Bengaluru by people who think eating right shouldn’t be this hard.
+              Built by people who think eating right shouldn’t be this hard.
             </p>
           </div>
 
@@ -144,7 +144,7 @@ export default function Footer() {
             color: 'rgba(255,255,255,0.52)',
           }}
         >
-          <p>© {new Date().getFullYear()} Nura · Made in Bengaluru.</p>
+          <p>© {new Date().getFullYear()} Nura. All rights reserved.</p>
           <div className="flex gap-5">
             {['Privacy', 'Terms', 'Cookies'].map((item) => (
               <a

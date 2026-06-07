@@ -160,7 +160,7 @@ export default function Hero() {
           <div className="overflow-hidden">
             <div className="hero-reveal-line flex items-center gap-2.5">
               <div className="line-olive" />
-              <span className="label-sm text-nb-olive">Launching in Bengaluru</span>
+              <span className="label-sm text-nb-olive">Launching soon</span>
             </div>
           </div>
 
@@ -227,7 +227,7 @@ export default function Hero() {
             }}
           >
             {[
-              { value: 'Bengaluru', label: 'Launching first' },
+              { value: '100%',      label: 'Personalized'    },
               { value: '2 min',     label: 'To shape Nura'   },
               { value: 'Daily',     label: 'Not a splurge'   },
             ].map((s) => (
