@@ -262,12 +262,13 @@ html.lenis, html.lenis body { height: auto; }
 }
 .survey-opts-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  /* auto-fit + a real 220px floor: shows 2 columns only when each can fit
+     comfortably (the 540px desktop survey, large screens) and collapses to a
+     single full-width column on phones — so long city names never overflow or
+     clip the right column. Plain "1fr 1fr" let columns grow to min-content and
+     pushed the 2nd column off-screen on mobile. */
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 0.5rem;
-}
-/* Collapse to a single column on narrow phones so labels never clip/wrap */
-@media (max-width: 400px) {
-  .survey-opts-grid { grid-template-columns: 1fr; }
 }
 
 /* ─── Survey options — premium wellness selection panels ─────────────────── */
