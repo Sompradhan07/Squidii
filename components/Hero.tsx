@@ -94,8 +94,8 @@ export default function Hero() {
             scrollTrigger: {
               trigger: sectionRef.current,
               start: 'top top',
-              end: '+=120%',
-              scrub: 1.2,
+              end: '+=60%',
+              scrub: 1.0,
               pin: true,
               pinSpacing: true,
               invalidateOnRefresh: true,

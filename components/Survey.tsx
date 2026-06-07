@@ -561,22 +561,6 @@ export default function Survey() {
               <div className="progress-bar">
                 <div className="progress-fill" style={{ width: `${progress}%` }} />
               </div>
-
-              <div className="flex justify-center gap-[5px] mt-3">
-                {questions.map((_, i) => (
-                  <div
-                    key={i}
-                    style={{
-                      width: i === idx ? 18 : 5,
-                      height: 4,
-                      borderRadius: '100px',
-                      background: i <= idx ? '#5a6c48' : 'rgba(44,40,34,0.12)',
-                      opacity: i < idx ? 0.5 : 1,
-                      transition: 'width 0.35s cubic-bezier(0.34,1.56,0.64,1), opacity 0.3s ease',
-                    }}
-                  />
-                ))}
-              </div>
             </div>
           )}
 
