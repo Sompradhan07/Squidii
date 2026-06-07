@@ -42,6 +42,7 @@ var FIELDS = [
   ['q8',  'Tried recently'],
   ['q9',  'Expected price / meal'],
   ['q10', 'Interested in Nura'],
+  ['q11', 'Pay more for personalized?'],
   ['deviceType', 'Device'],
   ['browser',    'Browser'],
   ['referrer',   'Referrer'],

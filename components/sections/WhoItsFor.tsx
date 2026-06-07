@@ -25,30 +25,31 @@ const CycleIcon = () => (
   </svg>
 )
 
+/* Accents brightened for legibility on the dark espresso background. */
 const personas = [
   {
     icon: <BarbellIcon />,
     title: 'The Gym-Goer',
     desc: 'Nailing workouts but can’t get nutrition to match.',
-    accent: '#5a6c48',
+    accent: '#8da674',
   },
   {
     icon: <BriefcaseIcon />,
     title: 'The Busy Professional',
     desc: 'Wants to eat right but doesn’t have time to plan every meal.',
-    accent: '#c28c48',
+    accent: '#d4a660',
   },
   {
     icon: <ShieldIcon />,
     title: 'Managing a Condition',
     desc: 'Living with PCOS, diabetes, or another condition where diet actually matters.',
-    accent: '#8da674',
+    accent: '#a8c48c',
   },
   {
     icon: <CycleIcon />,
     title: 'The Repeat Starter',
     desc: 'Anyone who’s ever said “I’ll start eating healthy on Monday” — for the fifth time.',
-    accent: '#c07458',
+    accent: '#d4896a',
   },
 ]
 
@@ -78,20 +79,47 @@ export default function WhoItsFor() {
   }, [])
 
   return (
-    <section id="who-its-for" ref={sectionRef} className="bg-nb-bg relative">
-      <div className="divider-gradient" />
-      <div className="nura-c nura-section">
+    <section
+      id="who-its-for"
+      ref={sectionRef}
+      className="relative overflow-hidden"
+      style={{
+        /* Warm cinematic dark — espresso / toasted oak (matches the brand dark tone) */
+        background: 'linear-gradient(168deg, #191610 0%, #1e1b12 55%, #1a1810 100%)',
+      }}
+    >
+      {/* Atmospheric top bridge — blends from the warm cream section above */}
+      <div
+        aria-hidden
+        className="absolute top-0 inset-x-0 pointer-events-none"
+        style={{
+          height: '80px',
+          background: 'linear-gradient(to bottom, rgba(242,236,226,0.10) 0%, transparent 100%)',
+          zIndex: 1,
+        }}
+      />
+
+      {/* Warm ambient light — cinematic mood */}
+      <div
+        aria-hidden
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: 'radial-gradient(ellipse 55% 45% at 80% 32%, rgba(200,148,72,0.07) 0%, transparent 65%)',
+        }}
+      />
+
+      <div className="nura-c nura-section relative z-[2]">
 
         {/* ── Header ───────────────────────────────────────────────────── */}
         <div className="nura-label-row mb-6">
-          <div className="line-olive" />
-          <span className="label-sm text-nb-olive">Who It’s For</span>
+          <div className="line-cream" />
+          <span className="label-sm" style={{ color: 'rgba(253,248,240,0.45)' }}>Who It’s For</span>
         </div>
 
         <div ref={titleRef} style={{ marginBottom: 'clamp(2.5rem, 5vw, 4rem)' }}>
           {[
-            { text: 'Built for people who’ve', color: 'var(--nb-heading)', italic: false },
-            { text: 'tried everything else.',   color: 'var(--nb-olive)',   italic: true  },
+            { text: 'Built for people who’ve', color: 'var(--nb-cream)', italic: false },
+            { text: 'tried everything else.',   color: 'var(--nb-amber)', italic: true  },
           ].map(({ text, color, italic }, i) => (
             <div key={i} className="overflow-hidden">
               <div
@@ -114,18 +142,21 @@ export default function WhoItsFor() {
         {/* ── Persona cards ────────────────────────────────────────────── */}
         <div ref={gridRef} className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {personas.map((p) => (
-            <div key={p.title} className="pc feature-card flex items-start gap-4">
+            <div key={p.title} className="pc step-card flex items-start gap-4">
               <div
                 className="feat-icon-box"
-                style={{ background: `${p.accent}12`, color: p.accent }}
+                style={{ background: `${p.accent}1c`, color: p.accent, border: `1px solid ${p.accent}33` }}
               >
                 {p.icon}
               </div>
               <div>
-                <h3 className="font-display font-medium text-nb-heading leading-tight mb-1.5" style={{ fontSize: 'clamp(1.05rem, 1.8vw, 1.3rem)' }}>
+                <h3
+                  className="font-display font-medium leading-tight mb-1.5"
+                  style={{ fontSize: 'clamp(1.05rem, 1.8vw, 1.3rem)', color: 'var(--nb-cream)' }}
+                >
                   {p.title}
                 </h3>
-                <p className="text-nb-body leading-[1.66]" style={{ fontSize: '0.88rem' }}>
+                <p className="leading-[1.66]" style={{ fontSize: '0.88rem', color: 'rgba(255,248,232,0.5)' }}>
                   {p.desc}
                 </p>
               </div>
@@ -134,7 +165,17 @@ export default function WhoItsFor() {
         </div>
 
       </div>
-      <div className="divider-gradient" />
+
+      {/* Atmospheric bottom edge — subtle vignette into the section below */}
+      <div
+        aria-hidden
+        className="absolute bottom-0 inset-x-0 pointer-events-none"
+        style={{
+          height: '70px',
+          background: 'linear-gradient(to top, rgba(12,10,7,0.22) 0%, transparent 100%)',
+          zIndex: 1,
+        }}
+      />
     </section>
   )
 }

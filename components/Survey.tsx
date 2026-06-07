@@ -110,7 +110,7 @@ const questions: Question[] = [
     qPre: 'Primary', qEm: 'fitness goal?',
     sub: 'This shapes every meal we’d design for you.',
     hint: 'Your goal is the foundation of your plan.',
-    ctx: 'Mapping your goal', multi: false,
+    ctx: 'Mapping your goal', multi: true,
     opts: [
       { v: 'fat-loss',  l: 'Fat loss',          icon: ic.flame   },
       { v: 'muscle',    l: 'Muscle gain',       icon: ic.barbell },
@@ -136,7 +136,7 @@ const questions: Question[] = [
     qPre: 'How often does this', qEm: 'frustrate you?',
     sub: 'How often this gets in your way tells us how urgent it is.',
     hint: 'The more it frustrates you, the more Nura can help.',
-    ctx: 'Gauging the pain', multi: true,
+    ctx: 'Gauging the pain', multi: false,
     opts: [
       { v: 'daily',     l: 'Almost every day', icon: ic.infinity },
       { v: 'few-week',  l: 'Few times a week', icon: ic.grid     },
