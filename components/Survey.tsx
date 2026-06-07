@@ -205,11 +205,6 @@ function getBrowser(ua: string): string {
   return 'Other'
 }
 
-function formatAnswer(v: string | string[] | undefined): string {
-  if (!v) return ''
-  return Array.isArray(v) ? v.join(', ') : v
-}
-
 /* ─── Option card ────────────────────────────────────────────────────────── */
 function Option({
   opt, selected, onSelect, multi,
@@ -439,18 +434,20 @@ export default function Survey() {
     const browser  = typeof navigator !== 'undefined' ? getBrowser(navigator.userAgent) : 'Unknown'
     const referrer = typeof document !== 'undefined' ? (document.referrer || 'direct') : 'direct'
 
+    /* Send raw values — strings for single-select, arrays for multi-select.
+       The API (validateAnswer) validates each and joins multi answers with ", ". */
     const payload = {
-      q1:  formatAnswer(currentAnswers[1]),
-      q2:  formatAnswer(currentAnswers[2]),
-      q3:  formatAnswer(currentAnswers[3]),
-      q4:  formatAnswer(currentAnswers[4]),
-      q5:  formatAnswer(currentAnswers[5]),
-      q6:  formatAnswer(currentAnswers[6]),
-      q7:  formatAnswer(currentAnswers[7]),
-      q8:  formatAnswer(currentAnswers[8]),
-      q9:  formatAnswer(currentAnswers[9]),
-      q10: formatAnswer(currentAnswers[10]),
-      q11: formatAnswer(currentAnswers[11]),
+      q1:  currentAnswers[1]  ?? '',
+      q2:  currentAnswers[2]  ?? '',
+      q3:  currentAnswers[3]  ?? '',
+      q4:  currentAnswers[4]  ?? '',
+      q5:  currentAnswers[5]  ?? '',
+      q6:  currentAnswers[6]  ?? '',
+      q7:  currentAnswers[7]  ?? '',
+      q8:  currentAnswers[8]  ?? '',
+      q9:  currentAnswers[9]  ?? '',
+      q10: currentAnswers[10] ?? '',
+      q11: currentAnswers[11] ?? '',
       deviceType,
       browser,
       referrer,
