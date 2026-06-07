@@ -284,7 +284,7 @@ export default function Hero() {
           e.key === 'Enter' &&
           document.getElementById('problem')?.scrollIntoView({ behavior: 'smooth' })
         }
-        className="absolute bottom-5 left-1/2 -translate-x-1/2 flex flex-col items-center gap-[0.3rem] cursor-pointer z-10"
+        className="absolute bottom-5 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-[0.3rem] cursor-pointer z-10"
         style={{ opacity: 0 }}
       >
         <span className="label-sm text-nb-muted" style={{ fontSize: '0.55rem', whiteSpace: 'nowrap' }}>Scroll to explore</span>
