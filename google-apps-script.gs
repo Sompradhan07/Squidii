@@ -40,7 +40,7 @@ var FIELDS = [
   ['q6',  'Hardest part'],
   ['q7',  'Frustration frequency'],
   ['q8',  'Tried recently'],
-  ['q9',  'Expected price / meal'],
+  ['q9',  'Daily online food spend'],
   ['q10', 'Interested in Nura'],
   ['q11', 'Pay more for personalized?'],
   ['deviceType', 'Device'],
