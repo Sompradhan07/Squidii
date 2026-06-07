@@ -11,7 +11,7 @@ const ALLOWED: Record<string, readonly string[]> = {
   q6:  ['figuring','no-time','consistency','affordable'],
   q7:  ['daily','few-week','sometimes','rarely'],
   q8:  ['meal-prep','diet-app','meal-service','havent'],
-  q9:  ['u100','100-150','150-200','200plus'],
+  q9:  ['100-150','150-200','200plus'],
   q10: ['yes','maybe','no'],
   q11: ['yes-worth','yes-fair','maybe','no'],
 }

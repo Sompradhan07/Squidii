@@ -136,7 +136,7 @@ const questions: Question[] = [
     qPre: 'How often does this', qEm: 'frustrate you?',
     sub: 'How often this gets in your way tells us how urgent it is.',
     hint: 'The more it frustrates you, the more Nura can help.',
-    ctx: 'Gauging the pain', multi: false,
+    ctx: 'Gauging the pain', multi: true,
     opts: [
       { v: 'daily',     l: 'Almost every day', icon: ic.infinity },
       { v: 'few-week',  l: 'Few times a week', icon: ic.grid     },
@@ -164,7 +164,6 @@ const questions: Question[] = [
     hint: 'Helps us price Nura to be daily, not a splurge.',
     ctx: 'Aligning with your budget', multi: false,
     opts: [
-      { v: 'u100',     l: 'Under ₹100', icon: ic.rupee   },
       { v: '100-150',  l: '₹100–150',   icon: ic.rupee   },
       { v: '150-200',  l: '₹150–200',   icon: ic.card    },
       { v: '200plus',  l: '₹200+',      icon: ic.diamond },
