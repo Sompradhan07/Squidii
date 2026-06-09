@@ -339,12 +339,6 @@ html.lenis, html.lenis body { height: auto; }
   box-shadow: 0 2px 10px rgba(36,22,8,0.09), 0 1px 3px rgba(36,22,8,0.05);
   white-space: nowrap;
 }
-/* Orbital badge positions are tuned to the desktop two-column bowl geometry.
-   Below 1024px the bowl is smaller and centered, so the badges would drift
-   off it — hide them there. */
-@media (max-width: 1023px) {
-  .hero-orbital-badge { display: none; }
-}
 .nb-orbital-dot {
   width: 5px;
   height: 5px;
@@ -549,26 +543,7 @@ html.lenis, html.lenis body { height: auto; }
 /* ─── Hero line reveal ───────────────────────────────────────────────────── */
 .hero-reveal-wrap { overflow: hidden; line-height: 1; }
 
-/* ─── Hero mobile + tablet stack ─────────────────────────────────────────── */
-/* Covers everything below the 1024px two-column breakpoint so tablets
-   (768–1023px) get the reordered bowl-on-top layout instead of a giant
-   desktop-height bowl pushed below the text. */
-@media (max-width: 1023px) {
-  .hero-2col {
-    grid-template-columns: 1fr !important;
-    grid-template-rows: auto auto !important;
-    padding-top: 72px !important;
-    padding-bottom: 28px !important;
-    gap: 0.75rem !important;
-    overflow: hidden !important;
-  }
-  .hero-text-col  { order: 2 !important; gap: 0.875rem !important; }
-  .hero-bowl-col  {
-    order: 1 !important;
-    height: clamp(270px, 75vw, 340px) !important;
-    min-height: unset !important;
-  }
-}
+/* Hero is now a centered layout over a full-bleed bowl background — no 2-column grid. */
 
 /* ─── Hero headline ──────────────────────────────────────────────────────── */
 .hero-headline {
