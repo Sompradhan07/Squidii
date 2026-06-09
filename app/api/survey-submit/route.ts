@@ -7,11 +7,11 @@ const ALLOWED: Record<string, readonly string[]> = {
   q2:  ['professional','student','other'],
   q3:  ['5plus','3-4','1-2','rarely'],
   q4:  ['want-unsure','know-inconsistent','track','dont-think'],
-  q5:  ['fat-loss','muscle','healthier','condition'],
+  q5:  ['fat-loss','muscle','recomp','healthier','condition'],
   q6:  ['figuring','no-time','consistency','affordable'],
   q7:  ['daily','few-week','sometimes','rarely'],
   q8:  ['meal-prep','diet-app','meal-service','havent'],
-  q9:  ['300-400','400-500','500plus','no-online'],
+  q9:  ['200-300','300-400','400plus','no-online'],
   q10: ['yes','maybe','no'],
   q11: ['yes-worth','yes-fair','maybe','no'],
 }

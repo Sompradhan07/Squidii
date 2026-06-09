@@ -94,10 +94,12 @@ export default function Hero() {
         <BowlImage className="w-full h-full" />
       </div>
 
-      {/* Light cream scrim — keeps the bowl soft & faint and the text readable */}
-      <div aria-hidden className="absolute inset-0 z-0 pointer-events-none" style={{ background: 'rgba(250,248,243,0.55)' }} />
+      {/* Light cream scrim — keeps the bowl soft & faint and the text readable.
+         A strong centre wash (cream — matches the photo's warm tones) sits behind
+         the copy so it stays clearly legible; the bowl shows through at the edges. */}
+      <div aria-hidden className="absolute inset-0 z-0 pointer-events-none" style={{ background: 'rgba(250,248,243,0.6)' }} />
       <div aria-hidden className="absolute inset-0 z-0 pointer-events-none" style={{
-        background: 'radial-gradient(ellipse 62% 56% at 50% 45%, rgba(250,248,243,0.52) 0%, transparent 72%)',
+        background: 'radial-gradient(ellipse 72% 70% at 50% 47%, rgba(250,248,243,0.9) 0%, rgba(250,248,243,0.58) 40%, rgba(250,248,243,0.16) 66%, transparent 82%)',
       }} />
 
       {/* ── Cinematic atmosphere — warm depth layers over the scrim ──────── */}
