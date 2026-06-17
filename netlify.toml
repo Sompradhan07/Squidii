@@ -1,4 +1,4 @@
-# Netlify build configuration for the Nura Next.js app.
+# Netlify build configuration for the Squidii Next.js app.
 # The official Next.js runtime (@netlify/plugin-nextjs) is auto-installed by
 # Netlify when it detects Next.js — no need to list it here.
 

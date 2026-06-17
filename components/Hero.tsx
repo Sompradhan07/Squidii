@@ -1,243 +1,181 @@
 'use client'
 
+import Image from 'next/image'
 import { useEffect, useRef } from 'react'
 import { gsap } from '@/lib/gsap'
-import BowlImage from './bowl/BowlImage'
 
 /* ─── Hero ──────────────────────────────────────────────────────────────────
-   Centered statement over a soft, lightened full-bleed bowl photograph.
-   The bowl keeps its behaviours — gentle float, mouse-parallax tilt, and the
-   desktop scroll-scale pin (now applied to the background layer).            */
+   Two-column statement: editorial copy on the left, a "meal ticket" card on
+   the right showing a real Squidii bowl with its macro breakdown.            */
 export default function Hero() {
-  const sectionRef  = useRef<HTMLElement>(null)
-  const textColRef  = useRef<HTMLDivElement>(null)   // centered content
-  const subtitleRef = useRef<HTMLParagraphElement>(null)
-  const ctaRef      = useRef<HTMLDivElement>(null)
-  const statsRef    = useRef<HTMLDivElement>(null)
-  const bowlColRef  = useRef<HTMLDivElement>(null)   // full-bleed bowl background
-  const scrollRef   = useRef<HTMLDivElement>(null)
+  const sectionRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-
     const ctx = gsap.context(() => {
-      /* Line-reveal — each line slides up from behind its overflow:hidden parent */
-      const lines = sectionRef.current?.querySelectorAll('.hero-reveal-line')
-      if (lines?.length) {
+      if (!reduced) {
         gsap.fromTo(
-          Array.from(lines),
-          { yPercent: reduced ? 0 : 108, opacity: reduced ? 1 : 0 },
-          { yPercent: 0, opacity: 1, duration: 1.08, stagger: 0.09, ease: 'power4.out', delay: 0.05 },
+          sectionRef.current?.querySelectorAll('[data-reveal]') ?? [],
+          { opacity: 0, y: 30 },
+          {
+            opacity: 1, y: 0, duration: 0.8, ease: 'power3.out',
+            stagger: 0.08, delay: 0.05,
+          },
         )
       }
-
-      const d = reduced ? 0 : 0.82
-
-      gsap.fromTo(subtitleRef.current,
-        { opacity: 0, y: reduced ? 0 : 14 },
-        { opacity: 1, y: 0, duration: 0.88, ease: 'power3.out', delay: d })
-
-      gsap.fromTo(ctaRef.current,
-        { opacity: 0, y: reduced ? 0 : 10 },
-        { opacity: 1, y: 0, duration: 0.74, ease: 'power3.out', delay: d + 0.12 })
-
-      gsap.fromTo(statsRef.current,
-        { opacity: 0 },
-        { opacity: 1, duration: 0.62, delay: d + 0.26 })
-
-      /* Background bowl fades in (opacity only — leaves `scale` free for the pin) */
-      gsap.fromTo(bowlColRef.current,
-        { opacity: 0 },
-        { opacity: 1, duration: 1.4, ease: 'power3.out', delay: 0.1 })
-
-      gsap.fromTo(scrollRef.current,
-        { opacity: 0 },
-        { opacity: 1, duration: 0.5, delay: d + 0.72 })
-
-      /* Scroll-triggered parallax pin — desktop only.
-         Scales the background bowl and fades the centered content as you scroll. */
-      if (!reduced) {
-        const mm = gsap.matchMedia()
-        mm.add('(min-width: 1024px)', () => {
-          const tl = gsap.timeline({
-            scrollTrigger: {
-              trigger: sectionRef.current,
-              start: 'top top',
-              end: '+=60%',
-              scrub: 1.0,
-              pin: true,
-              pinSpacing: true,
-              invalidateOnRefresh: true,
-            },
-          })
-          tl.to(bowlColRef.current, { scale: 1.08, duration: 1 }, 0)
-          tl.to(textColRef.current, { opacity: 0, y: -24, duration: 0.25 }, 0.75)
-        })
-      }
+      /* Macro bars grow from the left */
+      sectionRef.current?.querySelectorAll('[data-bar]').forEach((bar, i) => {
+        gsap.fromTo(bar,
+          { scaleX: 0 },
+          { scaleX: 1, transformOrigin: 'left', duration: 1, delay: 0.4 + i * 0.1, ease: 'power3.out' },
+        )
+      })
     }, sectionRef)
-
     return () => ctx.revert()
   }, [])
+
+  const macros = [
+    { label: 'Protein',       value: '7g',  pct: '6%',  bar: 18, color: 'var(--nb-olive)' },
+    { label: 'Carbohydrates', value: '86g', pct: '74%', bar: 74, color: 'var(--nb-amber)' },
+    { label: 'Healthy fats',  value: '10g', pct: '20%', bar: 34, color: 'var(--nb-terra)' },
+  ]
 
   return (
     <section
       ref={sectionRef}
-      className="bg-nb-bg min-h-svh max-h-[1080px] overflow-hidden relative"
+      className="relative overflow-hidden bg-nb-bg"
+      style={{ padding: 'clamp(5rem,9vh,7rem) clamp(1.25rem,4vw,3.5rem) clamp(3rem,6vh,5rem)' }}
     >
-      {/* ── Bowl food photo — full-bleed background (floats + tilts on cursor) ── */}
+      {/* Ambient blobs */}
+      <div aria-hidden className="absolute pointer-events-none" style={{ top: '-10%', right: '-8%', width: 640, height: 640, borderRadius: '50%', background: 'radial-gradient(circle, rgba(194,140,72,0.16), transparent 62%)', filter: 'blur(30px)' }} />
+      <div aria-hidden className="absolute pointer-events-none" style={{ bottom: '-20%', left: '-12%', width: 600, height: 600, borderRadius: '50%', background: 'radial-gradient(circle, rgba(90,108,72,0.12), transparent 64%)', filter: 'blur(34px)' }} />
+
       <div
-        ref={bowlColRef}
-        aria-hidden
-        className="absolute inset-0 z-0"
-        style={{ opacity: 0, willChange: 'transform, opacity' }}
-      >
-        <BowlImage className="w-full h-full" />
-      </div>
-
-      {/* Light cream scrim — keeps the bowl soft & faint and the text readable.
-         A strong centre wash (cream — matches the photo's warm tones) sits behind
-         the copy so it stays clearly legible; the bowl shows through at the edges. */}
-      <div aria-hidden className="absolute inset-0 z-0 pointer-events-none" style={{ background: 'rgba(250,248,243,0.6)' }} />
-      <div aria-hidden className="absolute inset-0 z-0 pointer-events-none" style={{
-        background: 'radial-gradient(ellipse 72% 70% at 50% 47%, rgba(250,248,243,0.9) 0%, rgba(250,248,243,0.58) 40%, rgba(250,248,243,0.16) 66%, transparent 82%)',
-      }} />
-
-      {/* ── Cinematic atmosphere — warm depth layers over the scrim ──────── */}
-      <div aria-hidden className="absolute inset-0 z-0 pointer-events-none" style={{
-        background: 'radial-gradient(ellipse 65% 55% at 74% 28%, rgba(210,155,75,0.10) 0%, rgba(220,170,90,0.04) 45%, transparent 68%)',
-      }} />
-      <div aria-hidden className="absolute inset-0 z-0 pointer-events-none" style={{
-        background: 'radial-gradient(ellipse 52% 52% at 22% 74%, rgba(90,108,72,0.07) 0%, transparent 65%)',
-      }} />
-      <div aria-hidden className="absolute inset-0 z-0 pointer-events-none" style={{
-        background: 'radial-gradient(ellipse 92% 88% at 50% 50%, transparent 52%, rgba(20,16,10,0.05) 100%)',
-      }} />
-      <div aria-hidden className="absolute bottom-0 inset-x-0 h-24 z-0 pointer-events-none" style={{
-        background: 'linear-gradient(to bottom, transparent, rgba(242,236,226,0.55))',
-      }} />
-
-      {/* ── Centered content ──────────────────────────────────────────────
-          pointer-events-none lets cursor movement pass through to the bowl so
-          the parallax tilt works across the whole hero; the CTA row re-enables
-          pointer events so the buttons stay clickable. */}
-      <div
-        ref={textColRef}
-        className="nura-c relative z-10 flex flex-col items-center justify-center text-center pointer-events-none"
+        className="relative z-[2] mx-auto items-center"
         style={{
-          minHeight: 'inherit',
-          paddingTop: '76px',
-          paddingBottom: '2.5rem',
-          gap: 'clamp(1.1rem, 2vw, 1.65rem)',
-          willChange: 'transform, opacity',
+          maxWidth: 1320,
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 340px), 1fr))',
+          gap: 'clamp(2rem,4vw,4.5rem)',
         }}
       >
-        {/* Kicker label */}
-        <div className="overflow-hidden">
-          <div className="hero-reveal-line flex items-center justify-center gap-3">
-            <div className="line-olive" />
+        {/* ── Left: copy ─────────────────────────────────────────────── */}
+        <div>
+          <div data-reveal className="inline-flex items-center gap-2.5 mb-7" style={{ padding: '8px 16px', border: '1.5px solid rgba(90,108,72,0.28)', borderRadius: 100, background: 'rgba(90,108,72,0.05)' }}>
+            <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#5a6c48', animation: 'pulseDot 2.2s infinite' }} />
             <span className="label-sm text-nb-olive">Launching soon</span>
-            <div className="line-olive" />
+          </div>
+
+          <h1 data-reveal className="font-display font-semibold text-nb-heading" style={{ fontSize: 'clamp(3.4rem,7.4vw,7.4rem)', lineHeight: 0.9, letterSpacing: '-0.03em', margin: 0 }}>
+            Eating right<br />
+            <span className="text-nb-olive" style={{ fontStyle: 'italic', fontWeight: 500 }}>is simple.</span>
+          </h1>
+
+          <p data-reveal className="font-display text-nb-heading" style={{ fontStyle: 'italic', fontWeight: 500, fontSize: 'clamp(1.3rem,2.3vw,1.9rem)', lineHeight: 1.3, margin: '1.6rem 0 0' }}>
+            Doing it every single day? That&rsquo;s the hard part.
+          </p>
+          <p data-reveal className="text-nb-body" style={{ fontSize: 'clamp(1rem,1.2vw,1.12rem)', lineHeight: 1.7, margin: '1rem 0 0', maxWidth: '46ch' }}>
+            Squidii delivers meals designed around your body and your goals, so you
+            don&rsquo;t have to plan, calculate, or compromise.
+          </p>
+
+          <div data-reveal className="flex flex-wrap gap-3" style={{ marginTop: '2.1rem' }}>
+            <button
+              className="btn btn-olive"
+              onClick={() => document.getElementById('survey')?.scrollIntoView({ behavior: 'smooth' })}
+            >
+              Help Us Build Squidii
+              <svg width="11" height="11" viewBox="0 0 16 16" fill="none" aria-hidden>
+                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </button>
+            <button
+              className="btn btn-outline"
+              onClick={() => document.getElementById('problem')?.scrollIntoView({ behavior: 'smooth' })}
+            >
+              See the problem
+            </button>
+          </div>
+
+          <div data-reveal className="flex flex-wrap items-stretch" style={{ gap: 'clamp(1.25rem,3vw,3rem)', marginTop: '2.75rem', paddingTop: '1.875rem', borderTop: '2px solid rgba(44,40,34,0.1)' }}>
+            {[
+              { value: '100%',  label: 'Personalized'    },
+              { value: '2 min', label: 'To shape Squidii' },
+              { value: 'Daily', label: 'Not a splurge'    },
+            ].map((s, i) => (
+              <div key={s.value} className="flex items-stretch" style={{ gap: 'clamp(1.25rem,3vw,3rem)' }}>
+                {i > 0 && <div style={{ width: 2, background: 'rgba(44,40,34,0.1)' }} />}
+                <div>
+                  <div className="font-display font-semibold text-nb-heading leading-none" style={{ fontSize: 'clamp(2rem,3.4vw,2.9rem)' }}>{s.value}</div>
+                  <div className="text-nb-muted uppercase" style={{ fontSize: '0.72rem', fontWeight: 600, letterSpacing: '0.04em', marginTop: 8 }}>{s.label}</div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
 
-        {/* Headline — two-line reveal */}
-        <div>
-          {[
-            { text: 'Eating right', cls: 'text-nb-heading' },
-            { text: 'is simple.',   cls: 'text-nb-olive italic' },
-          ].map(({ text, cls }) => (
-            <div key={text} className="overflow-hidden" style={{ marginBottom: '0.04em' }}>
-              <div className={`hero-reveal-line hero-headline ${cls}`}>{text}</div>
-            </div>
-          ))}
-        </div>
+        {/* ── Right: meal ticket card ────────────────────────────────── */}
+        <div data-reveal className="relative">
+          <div aria-hidden className="absolute" style={{ inset: -22, background: 'radial-gradient(60% 56% at 50% 42%, rgba(194,140,72,0.2), transparent 68%)', filter: 'blur(20px)' }} />
+          <div className="relative" style={{ background: '#ffffff', border: '2px solid rgba(44,40,34,0.1)', borderRadius: 30, overflow: 'hidden', boxShadow: '0 34px 70px -28px rgba(44,40,34,0.4)' }}>
 
-        {/* Subheadline + body */}
-        <p
-          ref={subtitleRef}
-          className="text-nb-body mx-auto"
-          style={{ opacity: 0, maxWidth: '44ch', fontSize: 'clamp(0.88rem, 1.20vw, 1rem)', lineHeight: 1.78 }}
-        >
-          <span
-            className="block font-display italic text-nb-heading"
-            style={{ fontSize: 'clamp(1.05rem, 1.9vw, 1.45rem)', lineHeight: 1.3, marginBottom: '0.7rem', fontStyle: 'italic' }}
-          >
-            Doing it every single day? That&rsquo;s the hard part.
-          </span>
-          Nura delivers meals designed around your body and your goals — so you don&rsquo;t
-          have to plan, calculate, or compromise.
-        </p>
-
-        {/* CTA row */}
-        <div ref={ctaRef} className="flex flex-wrap gap-2.5 justify-center pointer-events-auto" style={{ opacity: 0 }}>
-          <button
-            className="btn btn-olive"
-            onClick={() => document.getElementById('survey')?.scrollIntoView({ behavior: 'smooth' })}
-          >
-            Help Us Build Nura
-            <svg width="11" height="11" viewBox="0 0 16 16" fill="none" aria-hidden>
-              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </button>
-          <button
-            className="btn btn-outline"
-            onClick={() => document.getElementById('problem')?.scrollIntoView({ behavior: 'smooth' })}
-          >
-            See the problem
-          </button>
-        </div>
-
-        {/* Stats row */}
-        <div
-          ref={statsRef}
-          className="flex justify-center border-t border-nb-border mx-auto"
-          style={{
-            opacity: 0,
-            maxWidth: '30rem',
-            paddingTop: 'clamp(0.875rem, 1.6vw, 1.25rem)',
-            gap: 'clamp(1.5rem, 3.5vw, 3rem)',
-          }}
-        >
-          {[
-            { value: '100%',  label: 'Personalized'  },
-            { value: '2 min', label: 'To shape Nura' },
-            { value: 'Daily', label: 'Not a splurge' },
-          ].map((s) => (
-            <div key={s.value}>
-              <div
-                className="font-display font-semibold text-nb-heading leading-none"
-                style={{ fontSize: 'clamp(1.12rem, 2vw, 1.5rem)' }}
-              >
-                {s.value}
+            {/* Dark header */}
+            <div className="flex items-center justify-between" style={{ background: 'var(--nb-dark2)', padding: '22px 26px' }}>
+              <div>
+                <div className="uppercase" style={{ fontSize: '0.62rem', fontWeight: 700, letterSpacing: '0.18em', color: 'var(--nb-amber)' }}>Today&rsquo;s Squidii</div>
+                <div className="font-display font-semibold text-nb-cream" style={{ fontSize: '1.2rem', lineHeight: 1.15, marginTop: 4 }}>Built around your goal</div>
               </div>
-              <div className="text-nb-muted mt-1" style={{ fontSize: '0.67rem', letterSpacing: '0.05em' }}>
-                {s.label}
+              <span style={{ fontSize: '0.64rem', fontWeight: 700, color: 'var(--nb-dark2)', background: 'var(--nb-amber)', padding: '7px 13px', borderRadius: 100, whiteSpace: 'nowrap' }}>For you</span>
+            </div>
+
+            {/* Photo */}
+            <div aria-hidden style={{ position: 'relative', height: 200, borderBottom: '2px solid rgba(44,40,34,0.08)', overflow: 'hidden' }}>
+              <Image
+                src="https://images.unsplash.com/photo-1610441009633-b6ca9c6d4be2?auto=format&fit=crop&w=1200&q=90"
+                alt="A fresh Squidii bowl"
+                fill
+                className="object-cover object-center"
+                priority
+                sizes="(max-width: 767px) 100vw, 50vw"
+              />
+            </div>
+
+            {/* Macros + stats */}
+            <div style={{ padding: '24px 26px' }}>
+              <div className="uppercase text-nb-muted" style={{ fontSize: '0.64rem', fontWeight: 700, letterSpacing: '0.14em', marginBottom: 16 }}>This meal&rsquo;s macros</div>
+
+              <div className="flex flex-col" style={{ gap: 14 }}>
+                {macros.map((m) => (
+                  <div key={m.label}>
+                    <div className="flex justify-between items-baseline" style={{ marginBottom: 7 }}>
+                      <span style={{ fontSize: '0.82rem', fontWeight: 700, color: 'var(--nb-heading)' }}>{m.label}</span>
+                      <span style={{ fontSize: '0.82rem', fontWeight: 700, color: m.color }}>
+                        {m.value} <span style={{ fontWeight: 500, color: 'var(--nb-muted)' }}>· {m.pct}</span>
+                      </span>
+                    </div>
+                    <div style={{ height: 9, borderRadius: 99, background: 'rgba(44,40,34,0.08)', overflow: 'hidden' }}>
+                      <div data-bar style={{ height: '100%', width: `${m.bar}%`, borderRadius: 99, background: m.color }} />
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="grid" style={{ gridTemplateColumns: 'repeat(3,1fr)', gap: 10, marginTop: 22, paddingTop: 22, borderTop: '2px solid rgba(44,40,34,0.08)' }}>
+                {[
+                  { value: '480',   label: 'kcal / meal' },
+                  { value: '7g',    label: 'Protein', border: true },
+                  { value: 'Daily', label: 'Delivered' },
+                ].map((s) => (
+                  <div key={s.label} className="text-center" style={s.border ? { borderLeft: '2px solid rgba(44,40,34,0.08)', borderRight: '2px solid rgba(44,40,34,0.08)' } : undefined}>
+                    <div className="font-display font-semibold text-nb-heading" style={{ fontSize: '1.7rem', lineHeight: 0.9 }}>{s.value}</div>
+                    <div className="text-nb-muted uppercase" style={{ fontSize: '0.6rem', marginTop: 5, letterSpacing: '0.05em' }}>{s.label}</div>
+                  </div>
+                ))}
               </div>
             </div>
-          ))}
+          </div>
         </div>
       </div>
-
-      {/* Scroll indicator */}
-      <div
-        ref={scrollRef}
-        onClick={() => document.getElementById('problem')?.scrollIntoView({ behavior: 'smooth' })}
-        role="button"
-        tabIndex={0}
-        aria-label="Scroll down"
-        onKeyDown={(e) =>
-          e.key === 'Enter' &&
-          document.getElementById('problem')?.scrollIntoView({ behavior: 'smooth' })
-        }
-        className="absolute bottom-5 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-[0.3rem] cursor-pointer z-10"
-        style={{ opacity: 0 }}
-      >
-        <span className="label-sm text-nb-muted" style={{ fontSize: '0.55rem', whiteSpace: 'nowrap' }}>Scroll to explore</span>
-        <div style={{ width: 1, height: 22, background: 'linear-gradient(to bottom, rgba(90,108,72,0.48), transparent)' }} />
-      </div>
-
-      {/* Bottom section bridge */}
-      <div className="absolute bottom-0 left-0 right-0 h-px bg-nb-border z-10" />
     </section>
   )
 }

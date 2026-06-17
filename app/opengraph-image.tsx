@@ -3,7 +3,7 @@ import { ImageResponse } from 'next/og'
 /* Branded social card — rendered at build/request time, no binary asset needed.
    Next.js wires this into both openGraph.images and twitter.images automatically. */
 
-export const alt = 'Nura — Food That Fits Your Goals'
+export const alt = 'Squidii — Food That Fits Your Goals'
 export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
 
@@ -57,7 +57,7 @@ export default function Image() {
         {/* Footer row */}
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           <div style={{ fontSize: '40px', color: '#1c1a16', fontWeight: 600, letterSpacing: '2px' }}>
-            nura.
+            squidii.
           </div>
           <div style={{ fontSize: '26px', color: '#58524a' }}>
             Food That Fits Your Goals

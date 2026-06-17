@@ -48,29 +48,36 @@ export default function Problem() {
   }, [])
 
   return (
-    <section id="problem" ref={sectionRef} className="bg-nb-bg2">
-      <div className="divider-gradient" />
-      <div className="nura-c nura-section">
+    <section
+      id="problem"
+      ref={sectionRef}
+      className="relative overflow-hidden"
+      style={{ background: 'linear-gradient(168deg, #191610 0%, #1f1b12 55%, #1a1810 100%)', scrollMarginTop: 72 }}
+    >
+      {/* Warm ambient light */}
+      <div aria-hidden className="absolute pointer-events-none" style={{ top: '8%', right: '6%', width: 540, height: 440, background: 'radial-gradient(ellipse, rgba(200,148,72,0.09), transparent 66%)' }} />
+
+      <div className="squidii-c squidii-section relative z-[2]">
 
         {/* ── Header ───────────────────────────────────────────────────── */}
-        <div className="nura-label-row mb-6">
-          <div className="line-olive" />
-          <span className="label-sm text-nb-olive">The Problem</span>
+        <div className="squidii-label-row mb-6">
+          <div className="line-cream" />
+          <span className="label-sm" style={{ color: 'rgba(253,248,240,0.5)' }}>The Problem</span>
         </div>
 
         <div ref={titleRef} style={{ marginBottom: 'clamp(2.5rem, 5vw, 4rem)' }}>
           {[
-            { text: 'You already know', color: 'var(--nb-heading)', italic: false },
-            { text: 'the struggle.',    color: 'var(--nb-olive)',   italic: true  },
+            { text: 'You already know', color: 'var(--nb-cream)', italic: false },
+            { text: 'the struggle.',    color: 'var(--nb-amber)', italic: true  },
           ].map(({ text, color, italic }, i) => (
             <div key={i} className="overflow-hidden">
               <div
                 className="rl font-display font-medium"
                 style={{
-                  fontSize: 'clamp(2rem, 4.5vw, 4.4rem)',
-                  lineHeight: 0.96,
-                  letterSpacing: '-0.022em',
-                  marginBottom: '0.06em',
+                  fontSize: 'clamp(2rem, 5vw, 5.2rem)',
+                  lineHeight: 0.92,
+                  letterSpacing: '-0.025em',
+                  marginBottom: '0.04em',
                   color,
                   fontStyle: italic ? 'italic' : undefined,
                 }}
@@ -82,39 +89,47 @@ export default function Problem() {
         </div>
 
         {/* ── Three numbered problem cards ─────────────────────────────── */}
-        <div ref={cardsRef} className="flex flex-col gap-4">
+        <div
+          ref={cardsRef}
+          className="grid gap-4"
+          style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 260px), 1fr))' }}
+        >
           {problems.map((p) => (
             <div
               key={p.num}
-              className="pc stat-card-accent"
-              style={{ borderLeftColor: 'var(--nb-olive)' }}
+              className="pc flex flex-col gap-3.5"
+              style={{
+                padding: 'clamp(1.6rem,2.5vw,2.3rem)',
+                background: 'rgba(255,248,232,0.04)',
+                border: '2px solid rgba(255,248,232,0.1)',
+                borderRadius: 22,
+              }}
             >
-              <div className="flex items-baseline gap-3.5 mb-2.5">
-                <span
-                  className="font-display font-semibold text-nb-olive leading-none shrink-0"
-                  style={{ fontSize: 'clamp(1.5rem, 3vw, 2.2rem)' }}
-                >
-                  {p.num}
-                </span>
+              <div
+                className="font-display font-semibold"
+                style={{ fontSize: 'clamp(2.4rem,4vw,3.4rem)', lineHeight: 0.8, color: 'var(--nb-amber)' }}
+              >
+                {p.num}
+              </div>
+              <div>
                 <h3
-                  className="font-display font-medium text-nb-heading leading-tight"
-                  style={{ fontSize: 'clamp(1.12rem, 2vw, 1.5rem)' }}
+                  className="font-display font-semibold text-nb-cream"
+                  style={{ fontSize: 'clamp(1.3rem,2vw,1.7rem)', margin: '0 0 8px', lineHeight: 1.1 }}
                 >
                   {p.title}
                 </h3>
+                <p
+                  className="leading-[1.7]"
+                  style={{ fontSize: 'clamp(0.95rem,1.2vw,1.1rem)', color: 'rgba(255,248,232,0.6)', margin: 0 }}
+                >
+                  {p.body}
+                </p>
               </div>
-              <p
-                className="text-nb-body leading-[1.74]"
-                style={{ fontSize: 'clamp(0.88rem, 1.1vw, 0.96rem)', maxWidth: '62ch' }}
-              >
-                {p.body}
-              </p>
             </div>
           ))}
         </div>
 
       </div>
-      <div className="divider-gradient" />
     </section>
   )
 }

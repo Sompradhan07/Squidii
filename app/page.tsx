@@ -24,13 +24,13 @@ export default function Page() {
         {/* 02 — The Problem */}
         <Problem />
 
-        {/* 03 — What Nura Does */}
+        {/* 03 — What Squidii Does */}
         <Solution />
 
         {/* 04 — Who It's For */}
         <WhoItsFor />
 
-        {/* 05 — Shape Nura (Survey Intro CTA) */}
+        {/* 05 — Shape Squidii (Survey Intro CTA) */}
         <SurveyIntro />
 
         {/* 06 — 11-Question Survey */}

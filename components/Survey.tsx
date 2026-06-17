@@ -321,7 +321,7 @@ function SuccessScreen() {
           style={{ fontSize: 'clamp(1.5rem,4vw,2.4rem)' }}
         >
           Thank you for helping<br />
-          <em className="text-nb-olive" style={{ fontStyle: 'italic' }}>shape Nura.</em>
+          <em className="text-nb-olive" style={{ fontStyle: 'italic' }}>shape Squidii.</em>
         </h2>
         <p className="text-nb-body leading-[1.78] max-w-[40ch] mx-auto" style={{ fontSize: '0.9rem' }}>
           Thank you for helping us build something that actually fits people&rsquo;s lives.
@@ -359,7 +359,7 @@ function SuccessScreen() {
           }}
         >
           {ic.wa}
-          Join Nura WhatsApp Community
+          Join Squidii WhatsApp Community
         </a>
 
         <button
@@ -527,7 +527,7 @@ export default function Survey() {
       id="survey"
       ref={sectionRef}
       className="min-h-svh flex flex-col relative overflow-hidden"
-      aria-label="Shape Nura — 11-question survey"
+      aria-label="Shape Squidii — 11-question survey"
       style={{ background: 'linear-gradient(180deg, #f0ebe1 0%, #f5f0e8 40%, #faf7f2 100%)' }}
     >
       {/* Grain texture */}
@@ -566,7 +566,7 @@ export default function Survey() {
                   </span>
                 </div>
                 <span className="text-nb-muted italic" style={{ fontSize: '0.64rem' }}>
-                  {idx < 6 ? 'Help us get Nura right…' : `~${minsLeft} min remaining`}
+                  {idx < 6 ? 'Help us get Squidii right…' : `~${minsLeft} min remaining`}
                 </span>
               </div>
 

@@ -108,10 +108,10 @@ export default function WhoItsFor() {
         }}
       />
 
-      <div className="nura-c nura-section relative z-[2]">
+      <div className="squidii-c squidii-section relative z-[2]">
 
         {/* ── Header ───────────────────────────────────────────────────── */}
-        <div className="nura-label-row mb-6">
+        <div className="squidii-label-row mb-6">
           <div className="line-cream" />
           <span className="label-sm" style={{ color: 'rgba(253,248,240,0.45)' }}>Who It’s For</span>
         </div>

@@ -178,10 +178,6 @@ html.lenis, html.lenis body { height: auto; }
   font-weight: 600;
 }
 
-/* ─── Bowl canvas ────────────────────────────────────────────────────────── */
-.bowl-canvas { position: relative; width: 100%; height: 100%; }
-.bowl-canvas canvas { display: block; }
-
 /* ─── Buttons ────────────────────────────────────────────────────────────── */
 .btn {
   position: relative;
@@ -424,6 +420,11 @@ html.lenis, html.lenis body { height: auto; }
   0%   { transform: translateX(-100%); }
   100% { transform: translateX(200%); }
 }
+@keyframes pulseDot {
+  0%   { box-shadow: 0 0 0 0 rgba(90,108,72,0.5); }
+  70%  { box-shadow: 0 0 0 8px rgba(90,108,72,0); }
+  100% { box-shadow: 0 0 0 0 rgba(90,108,72,0); }
+}
 
 /* ─── Feature card — premium editorial ──────────────────────────────────── */
 .feature-card {
@@ -490,7 +491,7 @@ html.lenis, html.lenis body { height: auto; }
 .tag-amber { background: rgba(194,140,72,0.09); color: #a07030; }
 
 /* ─── Core container system ──────────────────────────────────────────────── */
-.nura-c {
+.squidii-c {
   width: 100%;
   max-width: 1280px;
   margin-left: auto;
@@ -500,45 +501,45 @@ html.lenis, html.lenis body { height: auto; }
 }
 
 /* Section rhythm — tightened 18% for density and immersion */
-.nura-section {
+.squidii-section {
   padding-top: clamp(3.5rem, 6vw, 6.5rem);
   padding-bottom: clamp(3.5rem, 6vw, 6.5rem);
 }
-.nura-section-lg {
+.squidii-section-lg {
   padding-top: clamp(4.5rem, 8vw, 9rem);
   padding-bottom: clamp(4.5rem, 8vw, 9rem);
 }
 
 /* 2-column grid */
-.nura-grid-2 {
+.squidii-grid-2 {
   display: grid;
   grid-template-columns: 1fr;
   gap: clamp(2.5rem, 5vw, 5rem);
   align-items: center;
 }
 @media (min-width: 1024px) {
-  .nura-grid-2 { grid-template-columns: 1fr 1fr; }
+  .squidii-grid-2 { grid-template-columns: 1fr 1fr; }
 }
 
 /* 3-column grid */
-.nura-grid-3 {
+.squidii-grid-3 {
   display: grid;
   grid-template-columns: 1fr;
   gap: clamp(1rem, 2vw, 1.5rem);
 }
 @media (min-width: 640px) {
-  .nura-grid-3 { grid-template-columns: repeat(2, 1fr); }
+  .squidii-grid-3 { grid-template-columns: repeat(2, 1fr); }
 }
 @media (min-width: 1024px) {
-  .nura-grid-3 { grid-template-columns: repeat(3, 1fr); }
+  .squidii-grid-3 { grid-template-columns: repeat(3, 1fr); }
 }
 
 /* Text block widths */
-.nura-prose { max-width: 60ch; }
-.nura-prose-center { max-width: 48ch; margin-left: auto; margin-right: auto; }
+.squidii-prose { max-width: 60ch; }
+.squidii-prose-center { max-width: 48ch; margin-left: auto; margin-right: auto; }
 
 /* Section label row */
-.nura-label-row { display: flex; align-items: center; gap: 0.75rem; }
+.squidii-label-row { display: flex; align-items: center; gap: 0.75rem; }
 
 /* ─── Hero line reveal ───────────────────────────────────────────────────── */
 .hero-reveal-wrap { overflow: hidden; line-height: 1; }
@@ -688,7 +689,7 @@ html.lenis, html.lenis body { height: auto; }
 }
 
 /* ─── Utility classes ─────────────────────────────────────────────────────── */
-.nura-border { border-color: var(--nb-border); }
+.squidii-border { border-color: var(--nb-border); }
 .glass-warm {
   background: rgba(255,255,255,0.78);
   backdrop-filter: blur(10px);

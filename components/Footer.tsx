@@ -4,8 +4,8 @@ import { useEffect, useRef } from 'react'
 import { gsap } from '@/lib/gsap'
 
 const LINKS: Record<string, string[]> = {
-  Explore: ['The problem', 'What we do', 'Who it’s for', 'Shape Nura'],
-  Company: ['About Nura', 'Blog', 'Careers'],
+  Explore: ['The problem', 'What we do', 'Who it’s for', 'Shape Squidii'],
+  Company: ['About Squidii', 'Blog', 'Careers'],
   Legal:   ['Privacy', 'Terms'],
 }
 
@@ -28,7 +28,7 @@ export default function Footer() {
 
   return (
     <footer ref={ref} className="bg-nb-dark2" style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}>
-      <div className="nura-c" style={{ paddingTop: 'clamp(3.5rem,7vw,6rem)', paddingBottom: 'clamp(2rem,4vw,3rem)' }}>
+      <div className="squidii-c" style={{ paddingTop: 'clamp(3.5rem,7vw,6rem)', paddingBottom: 'clamp(2rem,4vw,3rem)' }}>
 
         {/* ── Top: brand + CTA ──────────────────────────────────────── */}
         <div
@@ -48,13 +48,13 @@ export default function Footer() {
               className="font-display font-medium text-nb-sage tracking-[0.04em]"
               style={{ fontSize: '1.35rem' }}
             >
-              nura.
+              squidii<span className="text-nb-amber">.</span>
             </div>
             <p
               className="leading-[1.74]"
               style={{ color: 'rgba(255,255,255,0.46)', fontSize: '0.86rem', maxWidth: '30ch' }}
             >
-              Food that fits your goals. Nura designs meals around your body and
+              Food that fits your goals. Squidii designs meals around your body and
               your goals — so eating right is finally simple to keep up.
             </p>
             <div className="flex items-center gap-3">
@@ -72,7 +72,7 @@ export default function Footer() {
               style={{ fontSize: 'clamp(1.1rem, 2.4vw, 1.45rem)' }}
             >
               Ready to help<br />
-              <span className="text-nb-sage italic">build Nura?</span>
+              <span className="text-nb-sage italic">build Squidii?</span>
             </p>
             <div>
               <button
@@ -100,7 +100,7 @@ export default function Footer() {
         >
           {/* Brand blurb */}
           <div className="flex flex-col gap-3">
-            <p className="label-sm" style={{ color: 'rgba(255,255,255,0.55)', fontSize: '0.62rem' }}>nura.</p>
+            <p className="label-sm" style={{ color: 'rgba(255,255,255,0.55)', fontSize: '0.62rem' }}>squidii.</p>
             <p style={{ color: 'rgba(255,255,255,0.52)', fontSize: '0.80rem', lineHeight: 1.72 }}>
               Built by people who think eating right shouldn’t be this hard.
             </p>
@@ -115,7 +115,7 @@ export default function Footer() {
                     item === 'The problem'    ? '#problem'
                     : item === 'What we do'   ? '#solution'
                     : item === 'Who it’s for' ? '#who-its-for'
-                    : item === 'Shape Nura'   ? '#survey'
+                    : item === 'Shape Squidii' ? '#survey'
                     : '#'
                   return (
                     <li key={item}>
@@ -144,7 +144,7 @@ export default function Footer() {
             color: 'rgba(255,255,255,0.52)',
           }}
         >
-          <p>© {new Date().getFullYear()} Nura. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Squidii. All rights reserved.</p>
           <div className="flex gap-5">
             {['Privacy', 'Terms', 'Cookies'].map((item) => (
               <a
@@ -159,7 +159,7 @@ export default function Footer() {
           </div>
           <p>
             Food that fits your goals ·{' '}
-            <span className="text-nb-sage">nura.</span>
+            <span className="text-nb-sage">squidii.</span>
           </p>
         </div>
       </div>

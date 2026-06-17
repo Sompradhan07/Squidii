@@ -7,7 +7,7 @@ const NAV_LINKS = [
   { label: 'The problem', id: 'problem' },
   { label: 'What we do', id: 'solution' },
   { label: "Who it's for", id: 'who-its-for' },
-  { label: 'Shape Nura', id: 'survey' },
+  { label: 'Shape Squidii', id: 'survey' },
 ]
 
 export default function Navbar() {
@@ -43,14 +43,14 @@ export default function Navbar() {
         style={{ opacity: 0 }}
         aria-label="Main navigation"
       >
-        <div className="nura-c h-16 flex items-center justify-between">
+        <div className="squidii-c h-16 flex items-center justify-between">
           {/* Wordmark */}
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            aria-label="Nura — scroll to top"
+            aria-label="Squidii — scroll to top"
             className="font-display font-medium text-xl tracking-[0.04em] text-nb-heading bg-transparent border-none cursor-pointer p-0 leading-none"
           >
-            nura.
+            squidii<span className="text-nb-olive">.</span>
           </button>
 
           {/* Desktop nav links */}
@@ -135,13 +135,13 @@ export default function Navbar() {
               className="btn btn-olive w-full"
               tabIndex={menuOpen ? 0 : -1}
             >
-              Help Us Build Nura
+              Help Us Build Squidii
             </button>
           </div>
         </div>
         <div className="shrink-0 pb-6 text-center">
           <span className="label-sm text-nb-subtle text-[0.6rem]">
-            nura. · Food That Fits Your Goals
+            squidii. · Food That Fits Your Goals
           </span>
         </div>
       </div>
