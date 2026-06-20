@@ -55,7 +55,7 @@ export default function Footer() {
               style={{ color: 'rgba(255,255,255,0.46)', fontSize: '0.86rem', maxWidth: '30ch' }}
             >
               Food that fits your goals. Squidii designs meals around your body and
-              your goals — so eating right is finally simple to keep up.
+              your goals, so eating right is finally simple to keep up.
             </p>
             <div className="flex items-center gap-3">
               <div className="line-cream" />

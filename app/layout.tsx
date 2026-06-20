@@ -20,18 +20,18 @@ const inter = Inter_Tight({
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.celliqui.in'),
-  title: 'Squidii — Food That Fits Your Goals',
+  title: 'Squidii: Food That Fits Your Goals',
   description:
-    'Squidii delivers meals designed around your body and your goals — so you don’t have to plan, calculate, or compromise. Launching soon.',
+    'Squidii delivers meals designed around your body and your goals, so you don’t have to plan, calculate, or compromise. Launching soon.',
   keywords: ['healthy meal delivery', 'goal-based meals', 'meal subscription', 'fitness meals', 'macro meals', 'healthy eating'],
   openGraph: {
-    title: 'Squidii — Food That Fits Your Goals',
-    description: 'Meals designed around your body and your goals. Eating right is simple — doing it every day is the hard part. Launching soon.',
+    title: 'Squidii: Food That Fits Your Goals',
+    description: 'Meals designed around your body and your goals. Eating right is simple. Doing it every day is the hard part. Launching soon.',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Squidii — Food That Fits Your Goals',
+    title: 'Squidii: Food That Fits Your Goals',
     description: 'Meals designed around your body and your goals. Launching soon.',
   },
 }

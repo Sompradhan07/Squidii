@@ -186,7 +186,7 @@ export default function Solution() {
               className="squidii-prose text-nb-body leading-[1.76]"
               style={{ fontSize: 'clamp(0.9rem, 1.2vw, 1rem)' }}
             >
-              Tell us what you’re working toward — losing weight, building muscle,
+              Tell us what you’re working toward: losing weight, building muscle,
               managing a health condition, or just eating right without the guesswork.
               Squidii designs every meal around what your body specifically needs.
             </p>

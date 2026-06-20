@@ -35,9 +35,9 @@ export default function Hero() {
   }, [])
 
   const macros = [
-    { label: 'Protein',       value: '7g',  pct: '6%',  bar: 18, color: 'var(--nb-olive)' },
-    { label: 'Carbohydrates', value: '86g', pct: '74%', bar: 74, color: 'var(--nb-amber)' },
-    { label: 'Healthy fats',  value: '10g', pct: '20%', bar: 34, color: 'var(--nb-terra)' },
+    { label: 'Protein',       value: '45g', pct: '37%', bar: 82, color: 'var(--nb-olive)' },
+    { label: 'Carbohydrates', value: '40g', pct: '33%', bar: 50, color: 'var(--nb-amber)' },
+    { label: 'Healthy fats',  value: '16g', pct: '30%', bar: 40, color: 'var(--nb-terra)' },
   ]
 
   return (
@@ -131,8 +131,8 @@ export default function Hero() {
             {/* Photo */}
             <div aria-hidden style={{ position: 'relative', height: 200, borderBottom: '2px solid rgba(44,40,34,0.08)', overflow: 'hidden' }}>
               <Image
-                src="https://images.unsplash.com/photo-1610441009633-b6ca9c6d4be2?auto=format&fit=crop&w=1200&q=90"
-                alt="A fresh Squidii bowl"
+                src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=2400&q=90"
+                alt="A Squidii high-protein bowl: grilled tofu, boiled egg, edamame, sweetcorn and fresh vegetables"
                 fill
                 className="object-cover object-center"
                 priority
@@ -163,7 +163,7 @@ export default function Hero() {
               <div className="grid" style={{ gridTemplateColumns: 'repeat(3,1fr)', gap: 10, marginTop: 22, paddingTop: 22, borderTop: '2px solid rgba(44,40,34,0.08)' }}>
                 {[
                   { value: '480',   label: 'kcal / meal' },
-                  { value: '7g',    label: 'Protein', border: true },
+                  { value: '45g',   label: 'Protein', border: true },
                   { value: 'Daily', label: 'Delivered' },
                 ].map((s) => (
                   <div key={s.label} className="text-center" style={s.border ? { borderLeft: '2px solid rgba(44,40,34,0.08)', borderRight: '2px solid rgba(44,40,34,0.08)' } : undefined}>

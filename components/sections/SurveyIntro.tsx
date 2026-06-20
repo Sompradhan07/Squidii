@@ -59,7 +59,7 @@ export default function SurveyIntro() {
           style={{ fontSize: 'clamp(1rem,1.3vw,1.18rem)', lineHeight: 1.7, color: 'rgba(253,248,240,0.82)', margin: '24px auto 0', maxWidth: '42ch' }}
         >
           We&rsquo;re building Squidii right now. This 2-minute survey shapes what
-          Squidii becomes — your honest answers decide what we build first.
+          Squidii becomes. Your honest answers decide what we build first.
         </p>
 
         {/* Meta stats */}

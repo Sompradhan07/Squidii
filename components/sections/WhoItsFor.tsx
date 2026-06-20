@@ -48,7 +48,7 @@ const personas = [
   {
     icon: <CycleIcon />,
     title: 'The Repeat Starter',
-    desc: 'Anyone who’s ever said “I’ll start eating healthy on Monday” — for the fifth time.',
+    desc: 'Anyone who’s ever said “I’ll start eating healthy on Monday,” for the fifth time.',
     accent: '#d4896a',
   },
 ]

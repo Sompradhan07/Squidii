@@ -95,7 +95,7 @@ const questions: Question[] = [
   {
     id: 4, label: 'Where You Stand',
     qPre: 'Your relationship with', qEm: 'healthy eating?',
-    sub: 'There’s no wrong answer — this helps us meet you where you are.',
+    sub: 'There’s no wrong answer. This helps us meet you where you are.',
     hint: 'We build around your current habits, not against them.',
     ctx: 'Where you stand today', multi: false,
     opts: [
@@ -123,7 +123,7 @@ const questions: Question[] = [
     id: 6, label: 'Biggest Challenge',
     qPre: 'Hardest part about', qEm: 'eating right?',
     sub: 'We’ll build around solving this friction point first.',
-    hint: 'Pinpoints what has been stopping you — so Nura can fix it.',
+    hint: 'Pinpoints what has been stopping you, so Nura can fix it.',
     ctx: 'Finding your friction', multi: false,
     opts: [
       { v: 'figuring',    l: 'Figuring out what and how much', icon: ic.question },
@@ -173,12 +173,12 @@ const questions: Question[] = [
   },
   {
     id: 11, label: 'The Value of Results',
-    qPre: 'Would you pay more for a dish personalized to your body —', qEm: 'one that transforms how you look and feel?',
+    qPre: 'Would you pay more for a dish personalized to your body,', qEm: 'one that transforms how you look and feel?',
     sub: 'Real food, built around your goals, with results you can actually see.',
     hint: 'This tells us what results-driven personalization is worth to you.',
     ctx: 'Pricing the transformation', multi: false,
     opts: [
-      { v: 'yes-worth', l: 'Yes — real results are worth it', icon: ic.star     },
+      { v: 'yes-worth', l: 'Yes, real results are worth it', icon: ic.star     },
       { v: 'yes-fair',  l: 'Yes, if the price is fair',       icon: ic.heart    },
       { v: 'maybe',     l: 'Maybe, once I see it works',      icon: ic.question },
       { v: 'no',        l: 'No, standard pricing only',       icon: ic.frown    },
@@ -527,7 +527,7 @@ export default function Survey() {
       id="survey"
       ref={sectionRef}
       className="min-h-svh flex flex-col relative overflow-hidden"
-      aria-label="Shape Squidii — 11-question survey"
+      aria-label="Shape Squidii, 11-question survey"
       style={{ background: 'linear-gradient(180deg, #f0ebe1 0%, #f5f0e8 40%, #faf7f2 100%)' }}
     >
       {/* Grain texture */}

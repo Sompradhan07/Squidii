@@ -3,7 +3,7 @@ import { ImageResponse } from 'next/og'
 /* Branded social card — rendered at build/request time, no binary asset needed.
    Next.js wires this into both openGraph.images and twitter.images automatically. */
 
-export const alt = 'Squidii — Food That Fits Your Goals'
+export const alt = 'Squidii: Food That Fits Your Goals'
 export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
 

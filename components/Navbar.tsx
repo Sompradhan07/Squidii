@@ -47,7 +47,7 @@ export default function Navbar() {
           {/* Wordmark */}
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            aria-label="Squidii — scroll to top"
+            aria-label="Squidii, scroll to top"
             className="font-display font-medium text-xl tracking-[0.04em] text-nb-heading bg-transparent border-none cursor-pointer p-0 leading-none"
           >
             squidii<span className="text-nb-olive">.</span>

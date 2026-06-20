@@ -8,17 +8,17 @@ const problems = [
   {
     num: '01',
     title: 'The Math Is Exhausting',
-    body: 'How much protein should this meal have? Am I eating too many carbs? Figuring this out for breakfast, lunch, and dinner — seven days a week? That’s where most people give up.',
+    body: 'How much protein should this meal have? Am I eating too many carbs? Figuring this out for breakfast, lunch, and dinner, seven days a week? That’s where most people give up.',
   },
   {
     num: '02',
     title: 'Willpower Runs Out',
-    body: 'You start strong on Monday. By Thursday, you’re ordering whatever’s convenient. Not because you don’t care — but because staying consistent is genuinely hard when every meal is a decision.',
+    body: 'You start strong on Monday. By Thursday, you’re ordering whatever’s convenient. Not because you don’t care, but because staying consistent is genuinely hard when every meal is a decision.',
   },
   {
     num: '03',
     title: 'The Alternatives Don’t Fit',
-    body: 'The “healthy” meal services charge a premium, throw in extra chicken, and call it a day. But they’re not built around what YOUR body needs — none of it is truly personalized.',
+    body: 'The “healthy” meal services charge a premium, throw in extra chicken, and call it a day. But they’re not built around what YOUR body needs. None of it is truly personalized.',
   },
 ]
 
