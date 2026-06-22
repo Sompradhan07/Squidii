@@ -123,7 +123,7 @@ const questions: Question[] = [
     id: 6, label: 'Biggest Challenge',
     qPre: 'Hardest part about', qEm: 'eating right?',
     sub: 'We’ll build around solving this friction point first.',
-    hint: 'Pinpoints what has been stopping you, so Nura can fix it.',
+    hint: 'Pinpoints what has been stopping you, so Squidii can fix it.',
     ctx: 'Finding your friction', multi: false,
     opts: [
       { v: 'figuring',    l: 'Figuring out what and how much', icon: ic.question },
@@ -136,7 +136,7 @@ const questions: Question[] = [
     id: 7, label: 'Frustration',
     qPre: 'How often does this', qEm: 'frustrate you?',
     sub: 'How often this gets in your way tells us how urgent it is.',
-    hint: 'The more it frustrates you, the more Nura can help.',
+    hint: 'The more it frustrates you, the more Squidii can help.',
     ctx: 'Gauging the pain', multi: false,
     opts: [
       { v: 'daily',     l: 'Almost every day', icon: ic.infinity },
@@ -149,7 +149,7 @@ const questions: Question[] = [
     id: 8, label: 'Past Attempts',
     qPre: 'Tried fixing this', qEm: 'recently?',
     sub: 'What hasn’t worked is as useful to us as what has.',
-    hint: 'Nura learns from your past attempts to avoid repeating them.',
+    hint: 'Squidii learns from your past attempts to avoid repeating them.',
     ctx: 'Learning from your history', multi: false,
     opts: [
       { v: 'meal-prep',    l: 'Meal prepping',  icon: ic.fork     },
@@ -161,7 +161,7 @@ const questions: Question[] = [
   {
     id: 9, label: 'Daily Spend',
     qPre: 'How much do you spend on', qEm: 'online food a day?',
-    sub: 'This helps us price Nura to fit your everyday routine.',
+    sub: 'This helps us price Squidii to fit your everyday routine.',
     hint: 'Your honest range shapes the plans we build first.',
     ctx: 'Understanding your spend', multi: false,
     opts: [
@@ -186,7 +186,7 @@ const questions: Question[] = [
   },
   {
     id: 10, label: 'Interest Level',
-    qPre: 'Interested in', qEm: 'trying Nura?',
+    qPre: 'Interested in', qEm: 'trying Squidii?',
     sub: 'Honest feedback helps us build something people actually want.',
     hint: 'Your candid answer shapes what we prioritize building first.',
     ctx: 'Measuring demand', multi: false,
